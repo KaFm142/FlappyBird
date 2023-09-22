@@ -10,15 +10,11 @@ int main() {
   window.create(videomode, "Test", sf::Style::Close | sf::Style::Titlebar);
   window.setPosition(sf::Vector2i(100, 100));
 
-  
+  window.setFramerateLimit(60);         // call it once, after creating the window
+
   while (window.isOpen()) {
-    
-
-
     sf::Event event;
     while (window.pollEvent(event)) {
-
-
       if (event.type == sf::Event::Closed) window.close();
     }
   }
