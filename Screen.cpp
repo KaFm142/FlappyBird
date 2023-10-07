@@ -7,9 +7,6 @@ Screen::Screen() : height(600.0), width(1200.0) {
                                 sf::Style::Close | sf::Style::Titlebar);
   window->setPosition(sf::Vector2i(100, 200));
   window->setFramerateLimit(120);
-
-  backgroundTexture.loadFromFile("resources/screenBackground.jpg");
-  backgroundSprite.setTexture(backgroundTexture);
 };
 
 Screen::Screen(float height, float width) : height(height), width(width) {
@@ -19,14 +16,13 @@ Screen::Screen(float height, float width) : height(height), width(width) {
                                 sf::Style::Close | sf::Style::Titlebar);
   window->setPosition(sf::Vector2i(100, 200));
   window->setFramerateLimit(120);
-
-  backgroundTexture.loadFromFile("resources/screenBackground.jpg");
-  backgroundSprite.setTexture(backgroundTexture);
 };
 
 Screen::~Screen() { delete window; };
 
 void Screen::displayBackground() {
+  backgroundTexture.loadFromFile("resources/screenBackground.jpg");
+  backgroundSprite.setTexture(backgroundTexture);
   while (window->isOpen()) {
     sf::Event event;
     while (window->pollEvent(event)) {
