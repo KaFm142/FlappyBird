@@ -9,6 +9,7 @@ class Menu : public Screen {
   sf::Sprite buttonSprite;
   bool playButton = true;
   bool chooseButton = true;
+
  public:
   Menu();
   Menu(float height, float width);
