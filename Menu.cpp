@@ -7,12 +7,6 @@ Menu::Menu(float height, float width) : Screen(height, width){};
 Menu::~Menu(){};
 
 void Menu::loadButton() {
-  // if (!backgroundTexture.loadFromFile("resources/menu.jpg")) {
-  //   std::cerr << "Failed to load menu" << std::endl;
-  //   return;
-  // }
-  // backgroundSprite.setTexture(backgroundTexture);
-
   // if (!buttonPlayTexture.loadFromFile("resources/menuPlayOff.jpg")) {
   //   std::cerr << "Failed to load play" << std::endl;
   //   return;
@@ -54,14 +48,12 @@ void Menu::displayBackground() {
   bool menuOpen = true;
 
   if (!backgroundTexture.loadFromFile("resources/menu.jpg")) {
-    std::cerr << "Failed to load menu.jpg" << std::endl;
+    std::cerr << "Failed to load menu" << std::endl;
     return;
   }
-
   backgroundSprite.setTexture(backgroundTexture);
 
   while (menuOpen) {
-    // loadButton();
     sf::Event event;
     while (window->pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
@@ -69,14 +61,10 @@ void Menu::displayBackground() {
         menuOpen = false;
       }
     }
-    action();
+
     window->clear();
     window->draw(backgroundSprite);
-    // window->draw(buttonPlaySprite);
-    // window->draw(buttonBirdsSprite);
-    // window->draw(buttonBackgroundSprite);
-    // window->draw(buttonModeSprite);
-    // window->draw(buttonDeleteSprite);
+    action();
     window->display();
   }
 }
@@ -88,31 +76,68 @@ void Menu::action() {
   float mouseY = static_cast<float>(Mposition.y);
 
   if (mouseX >= 490 && mouseX <= 750 && mouseY >= 190 && mouseY <= 260) {
+    if (!buttonTexture.loadFromFile("resources/menuPlayOn.jpg")) {
+      std::cerr << "Failed to load play" << std::endl;
+      return;
+    }
+    buttonSprite.setTexture(buttonTexture);
+    buttonSprite.setPosition(490, 190);
+    window->draw(buttonSprite);
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "play" << std::endl;
-      // window->close();
     }
   }
 
   if (mouseX >= 490 && mouseX <= 750 && mouseY >= 290 && mouseY <= 350) {
+    if (!buttonTexture.loadFromFile("resources/menuBirdsOn.jpg")) {
+      std::cerr << "Failed to load birds" << std::endl;
+      return;
+    }
+    buttonSprite.setTexture(buttonTexture);
+    buttonSprite.setPosition(493, 285);
+    window->draw(buttonSprite);
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "birds" << std::endl;
     }
   }
 
   if (mouseX >= 490 && mouseX <= 750 && mouseY >= 385 && mouseY <= 450) {
+    if (!buttonTexture.loadFromFile("resources/menuBackgroundOn.jpg")) {
+      std::cerr << "Failed to load background" << std::endl;
+      return;
+    }
+    buttonSprite.setTexture(buttonTexture);
+    buttonSprite.setPosition(491, 383);
+    window->draw(buttonSprite);
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "backgrounds" << std::endl;
     }
   }
 
   if (mouseX >= 490 && mouseX <= 750 && mouseY >= 490 && mouseY <= 560) {
+    if (!buttonTexture.loadFromFile("resources/menuModeOn.jpg")) {
+      std::cerr << "Failed to load mode" << std::endl;
+      return;
+    }
+    buttonSprite.setTexture(buttonTexture);
+    buttonSprite.setPosition(492, 489);
+    window->draw(buttonSprite);
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "mode" << std::endl;
     }
   }
 
-  if (mouseX >= 1015 && mouseX <= 1190 && mouseY >= 545 && mouseY <= 590) {
+  if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 544 && mouseY <= 590) {
+    if (!buttonTexture.loadFromFile("resources/menuDeleteOn.jpg")) {
+      std::cerr << "Failed to load delete" << std::endl;
+      return;
+    }
+    buttonSprite.setTexture(buttonTexture);
+    buttonSprite.setPosition(1018, 542);
+    window->draw(buttonSprite);
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "delete" << std::endl;
     }
