@@ -6,7 +6,6 @@ Menu::Menu(float height, float width) : Screen(height, width){};
 
 Menu::~Menu(){};
 
-
 void Menu::displayBackground() {
   bool menuOpen = true;
 
@@ -46,6 +45,7 @@ void Menu::action() {
     buttonSprite.setTexture(buttonTexture);
     buttonSprite.setPosition(490, 190);
     window->draw(buttonSprite);
+    
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "play" << std::endl;
@@ -60,6 +60,7 @@ void Menu::action() {
     buttonSprite.setTexture(buttonTexture);
     buttonSprite.setPosition(493, 285);
     window->draw(buttonSprite);
+    
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "birds" << std::endl;
@@ -74,6 +75,8 @@ void Menu::action() {
     buttonSprite.setTexture(buttonTexture);
     buttonSprite.setPosition(491, 383);
     window->draw(buttonSprite);
+    
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "backgrounds" << std::endl;
     }
@@ -87,6 +90,8 @@ void Menu::action() {
     buttonSprite.setTexture(buttonTexture);
     buttonSprite.setPosition(492, 489);
     window->draw(buttonSprite);
+  
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "mode" << std::endl;
     }
@@ -98,8 +103,9 @@ void Menu::action() {
       return;
     }
     buttonSprite.setTexture(buttonTexture);
-    buttonSprite.setPosition(1018, 542);
+    buttonSprite.setPosition(972, 530);
     window->draw(buttonSprite);
+    
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "delete" << std::endl;
