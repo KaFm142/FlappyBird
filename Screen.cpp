@@ -1,24 +1,17 @@
 #include "Screen.h"
 
-Screen::Screen() : height(600.0), width(1200.0) {
-  videomode.height = height;
-  videomode.width = width;
-  window = new sf::RenderWindow(videomode, "Screen",
-                                sf::Style::Close | sf::Style::Titlebar);
-  window->setPosition(sf::Vector2i(100, 200));
-  window->setFramerateLimit(120);
+Screen::Screen(){
+    // videomode.height = height;
+    // videomode.width = width;
+    // window = std::make_unique<sf::RenderWindow>(
+    //     videomode, "Screen", sf::Style::Close | sf::Style::Titlebar);
+    // window->setPosition(sf::Vector2i(100, 200));
+    // window->setFramerateLimit(120);
 };
 
-Screen::Screen(float height, float width) : height(height), width(width) {
-  videomode.height = height;
-  videomode.width = width;
-  window = new sf::RenderWindow(videomode, "Screen",
-                                sf::Style::Close | sf::Style::Titlebar);
-  window->setPosition(sf::Vector2i(100, 200));
-  window->setFramerateLimit(120);
-};
+Screen::Screen(float height, float width) : height(height), width(width) {}
 
-Screen::~Screen() { delete window; };
+Screen::~Screen(){};
 
 void Screen::displayBackground() {
   backgroundTexture.loadFromFile("resources/screenBackground.jpg");
