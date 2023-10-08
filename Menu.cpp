@@ -21,9 +21,6 @@ void Menu::displayBackground() {
       if (event.type == sf::Event::Closed) {
         window->close();
         menuOpen = false;
-        buttonSprite.~Sprite();
-        buttonTexture.~Texture();
-        break;
       }
     }
 

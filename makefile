@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Wextra -pedantic -std=c++14
+CFLAGS = -Wall -Wextra -pedantic -std=c++11
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
 # List of source files
