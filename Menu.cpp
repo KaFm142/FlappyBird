@@ -9,6 +9,7 @@ Menu::~Menu() { delete window; };
 
 void Menu::displayBackground() {
   bool menuOpen = true;
+  
   if (!backgroundTexture.loadFromFile("resources/menu.jpg")) {
     std::cerr << "Failed to load menu.jpg" << std::endl;
     return;
