@@ -11,7 +11,7 @@ Screen::Screen() {
 
 Screen::Screen(float height, float width) : height(height), width(width) {}
 
-Screen::~Screen(){};
+Screen::~Screen(){ delete window; };
 
 void Screen::displayBackground() {
   backgroundTexture.loadFromFile("resources/screenBackground.jpg");

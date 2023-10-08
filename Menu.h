@@ -6,17 +6,6 @@
 class Menu : public Screen {
  private:
 
-  // sf::Texture buttonPlayTexture;
-  // sf::Texture buttonBirdsTexture;
-  // sf::Texture buttonBackgroundTexture;
-  // sf::Texture buttonModeTexture;
-  // sf::Texture buttonDeleteTexture;
-
-  // sf::Sprite buttonPlaySprite;
-  // sf::Sprite buttonBirdsSprite;
-  // sf::Sprite buttonBackgroundSprite;
-  // sf::Sprite buttonModeSprite;
-  // sf::Sprite buttonDeleteSprite;
 
  public:
   Menu();
@@ -25,7 +14,7 @@ class Menu : public Screen {
 
   void displayBackground();
   void action();
-  void loadButton();
+
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
