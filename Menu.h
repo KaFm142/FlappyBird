@@ -15,7 +15,7 @@ class Menu : public Screen {
 
   void displayBackground();
   void action();
-  void loadButton();
+
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();

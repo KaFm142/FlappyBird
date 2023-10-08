@@ -6,43 +6,6 @@ Menu::Menu(float height, float width) : Screen(height, width){};
 
 Menu::~Menu(){};
 
-void Menu::loadButton() {
-  // if (!buttonPlayTexture.loadFromFile("resources/menuPlayOff.jpg")) {
-  //   std::cerr << "Failed to load play" << std::endl;
-  //   return;
-  // }
-  // buttonPlaySprite.setTexture(buttonPlayTexture);
-  // buttonPlaySprite.setPosition(490, 190);
-
-  // if (!buttonBirdsTexture.loadFromFile("resources/menuBirdsOff.jpg")) {
-  //   std::cerr << "Failed to load bird" << std::endl;
-  //   return;
-  // }
-  // buttonBirdsSprite.setTexture(buttonBirdsTexture);
-  // buttonBirdsSprite.setPosition(490, 290);
-
-  // if (!buttonBackgroundTexture.loadFromFile(
-  //         "resources/menuBackgroundOff.jpg")) {
-  //   std::cerr << "Failed to load background" << std::endl;
-  //   return;
-  // }
-  // buttonBackgroundSprite.setTexture(buttonBackgroundTexture);
-  // buttonBackgroundSprite.setPosition(490, 385);
-
-  // if (!buttonModeTexture.loadFromFile("resources/menuModeOff.jpg")) {
-  //   std::cerr << "Failed to load mode" << std::endl;
-  //   return;
-  // }
-  // buttonModeSprite.setTexture(buttonModeTexture);
-  // buttonModeSprite.setPosition(490, 490);
-
-  // if (!buttonDeleteTexture.loadFromFile("resources/menuDeleteOff.jpg")) {
-  //   std::cerr << "Failed to load delete" << std::endl;
-  //   return;
-  // }
-  // buttonDeleteSprite.setTexture(buttonDeleteTexture);
-  // buttonDeleteSprite.setPosition(1015, 545);
-}
 
 void Menu::displayBackground() {
   bool menuOpen = true;
