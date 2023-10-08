@@ -1,13 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu() {
-  videomode.height = 600.0;
-  videomode.width = 1200.0;
-  window = new sf::RenderWindow(videomode, "Screen",
-                                sf::Style::Close | sf::Style::Titlebar);
-  window->setPosition(sf::Vector2i(100, 200));
-  window->setFramerateLimit(120);
-};
+Menu::Menu() {}
 
 Menu::Menu(float height, float width) : Screen(height, width){};
 
