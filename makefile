@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -pedantic -std=c++11
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
 # List of source files
-SOURCES = Menu.cpp testMenu.cpp Screen.cpp
+SOURCES = Menu.cpp testMenu.cpp Screen.cpp Player.cpp
 
 # List of object files
 OBJECTS = $(SOURCES:.cpp=.o)

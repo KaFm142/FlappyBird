@@ -10,7 +10,7 @@ class Player {
   std::string choosenBirds;
   std::string choosenBackground;
   int mode;
-
+    
  public:
   Player();
 

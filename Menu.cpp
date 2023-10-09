@@ -49,6 +49,7 @@ void Menu::action() {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && playButton) {
       std::cout << "play" << std::endl;
       playButton = false;
+      std::cout << player->getName()<< std::endl;
     }
   }
 

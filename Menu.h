@@ -2,14 +2,17 @@
 #define MENU_H
 
 #include "Screen.h"
+#include "Player.h"
 
 class Menu : public Screen {
+ 
  private:
   sf::Texture buttonTexture;
   sf::Sprite buttonSprite;
   bool playButton = true;
   bool chooseButton = true;
-
+  Player *player;
+  
  public:
   Menu();
   Menu(float height, float width);
@@ -18,6 +21,7 @@ class Menu : public Screen {
   void displayBackground();
   void action();
 
+  //   void createPlayer();
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
