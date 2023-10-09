@@ -28,6 +28,8 @@ class Player {
 
   int getMode();
   void setMode(int mode);
+
+  //void createBird(std::string choosenBirds);  
 };
 
 #endif
