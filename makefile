@@ -9,7 +9,7 @@ SOURCES = Menu.cpp testMenu.cpp Screen.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 # The target executable
-TARGET = sfml-app
+TARGET = flappyBird.exe  # Note the .exe extension
 
 all: $(TARGET)
 
