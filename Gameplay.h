@@ -12,6 +12,7 @@ class Gameplay : public Screen {
   sf::Texture birdTexture;
   sf::Sprite birdSprite;
   Unflyable *unflyable;  
+bool pause = false; 
 
   public:
   Gameplay();
