@@ -1,5 +1,6 @@
 #include "Player.h"
 
+// Constructor
 Player::Player() {
   name = "";
   highscore = 0;
@@ -8,6 +9,7 @@ Player::Player() {
   mode = 1;
 }
 
+// Initialize the function
 int Player::getHighscore() { return this->highscore; }
 
 void Player::setHighscore(int score) { this->highscore = score; }

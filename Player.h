@@ -1,3 +1,5 @@
+// This class present a player
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -7,11 +9,13 @@ class Player {
  private:
   std::string name;
   int highscore;
+  // Choosen feature
+  int mode;
   std::string choosenBirds;
   std::string choosenBackground;
-  int mode;
-    
+
  public:
+  // Constructor
   Player();
 
   int getHighscore();
@@ -29,7 +33,7 @@ class Player {
   int getMode();
   void setMode(int mode);
 
-  //void createBird(std::string choosenBirds);  
+  // void createBird(std::string choosenBirds);
 };
 
 #endif
