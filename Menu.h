@@ -19,6 +19,7 @@ class Menu : public Screen {
 
   sf::Texture loadTexture(std::string fileName);
   void drawTexture(sf::Texture texture, int x, int y);
+  
   //   void createPlayer();
   //   void chooseDifficulty();
   //   void chooseBackground();

@@ -33,7 +33,7 @@ sf::Texture Menu::loadTexture(std::string fileName) {
   }
   return texture;
 }
-
+  
 void Menu::drawTexture(sf::Texture texture, int x, int y) {
   sf::Sprite sprite;
   sprite.setTexture(texture);
