@@ -1,7 +1,10 @@
 #include "Menu.h"
 
-// The constructor only set the title of the screen into "Menu"
-Menu::Menu() { window->setTitle("MENU"); }
+// The constructor set the title of the screen into "Menu" and create player
+Menu::Menu() {
+  window->setTitle("MENU");
+  createPlayer();
+}
 
 Menu::~Menu(){};
 
@@ -95,3 +98,37 @@ void Menu::action() {
     }
   }
 }
+
+void Menu::createPlayer() {
+  // set the background and title
+  backgroundTexture = Screen::loadTexture("resources/screen.jpg");
+  window->setTitle("Create Player");
+  window->setFramerateLimit(60);
+  // set up variable to set and display user input
+  sf::String playerInput = "";
+  sf::Text playerText;
+  playerText.setPosition(100, 100);
+  playerText.setFillColor(sf::Color::Red);
+  // While loop while window is open
+  while (window->isOpen()) {
+    sf::Event event;
+    // event pool
+    while (window->pollEvent(event)) {
+      // close the window
+      if (event.type == sf::Event::Closed) {
+        window->close();
+        system("clear");
+      }
+      // handle user input
+      if (event.type == sf::Event::TextEntered) {
+        playerInput += event.text.unicode;
+        playerText.setString(playerInput);
+      }
+      // Clear old frame and display user input
+      window->clear();
+      drawTexture(backgroundTexture, 0, 0);
+      window->draw(playerText);
+      window->display();
+    }
+  }
+};

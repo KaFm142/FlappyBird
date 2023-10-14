@@ -18,7 +18,7 @@ Screen::~Screen(){};
 
 void Screen::displayBackground() {
   // Load the initial background
-  backgroundTexture = loadTexture("resources/screenBackground.jpg");
+  backgroundTexture = loadTexture("resources/screen.jpg");
   // Set a while loop for the game
   while (window->isOpen()) {
     // Set up an event to hold

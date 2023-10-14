@@ -18,11 +18,11 @@ class Menu : public Screen {
   // Class constructor and destructor
   Menu();
   ~Menu();
-
+  // Display background and action function
   void displayBackground();
   void action();
-
-  //   void createPlayer();
+  // Create Player for new player
+  void createPlayer();
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
