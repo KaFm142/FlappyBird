@@ -2,8 +2,7 @@
 
 // Constructor
 Player::Player() {
-  name = "";
-  highscore = 0;
+  load();
   choosenBackground = "";
   choosenBirds = "";
   mode = 1;
@@ -31,3 +30,30 @@ void Player::setBackground(std::string background) {
 int Player::getMode() { return this->mode; }
 
 void Player::setMode(int mode) { this->mode = mode; }
+
+void Player::save() {
+  json playerData;
+  playerData["name"] = name;
+  playerData["highscore"] = highscore;
+
+  std::ofstream outputFile("save.json");
+  if (outputFile.is_open()) {
+    outputFile << playerData.dump(4);
+    outputFile.close();
+  } else {
+    std::cerr << "error in saving" << std::endl;
+  }
+};
+
+void Player::load() {
+  std::ifstream inputFile("save.json");
+  if (inputFile.is_open()) {
+    json playerData;
+    inputFile >> playerData;
+    name = playerData["name"];
+    highscore = playerData["highscore"];
+    inputFile.close();
+  } else {
+    std::cerr << "error in loading" << std::endl;
+  }
+}

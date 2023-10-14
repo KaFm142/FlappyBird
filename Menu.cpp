@@ -3,7 +3,7 @@
 // The constructor set the title of the screen into "Menu" and create player
 Menu::Menu() {
   createPlayer();
-  window->setTitle("MENU");
+  window->setTitle("Menu");
   displayBackground();
 }
 
@@ -125,7 +125,9 @@ void Menu::action() {
 void Menu::createPlayer() {
   // Allocate new memory address for player
   player = new Player();
-  player->setName(namePlayer());
+  if (player->getName() == "") {
+    player->setName(namePlayer());
+  };
 }
 
 void Menu::displayPlayer() {
@@ -162,7 +164,7 @@ std::string Menu::namePlayer() {
 
   // Set the background and title
   backgroundTexture = Screen::loadTexture("resources/createPlayer.jpg");
-  window->setTitle("Create Player");
+  window->setTitle("Name Player");
   window->setFramerateLimit(60);
 
   // Set up variable to set and display user input
@@ -224,6 +226,8 @@ std::string Menu::namePlayer() {
   return nameInput;
 };
 
-void Menu::play(){
+void Menu::play() {
+  player->save();
+  window->close();
   Gameplay Gameplay;
 }

@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Wextra -pedantic -std=c++11
+CFLAGS = -Wall -Wextra -pedantic -std=c++11 -g
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 VALGRIND = valgrind
 

@@ -3,7 +3,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <fstream>
+#include <iostream>
+#include "nlohmann/json.hpp"
 #include <string>
+
+using json = nlohmann::json;
 
 class Player {
  private:
@@ -33,6 +38,8 @@ class Player {
   int getMode();
   void setMode(int mode);
 
+  void save();
+  void load();
   // void createBird(std::string choosenBirds);
 };
 
