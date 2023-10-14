@@ -7,7 +7,8 @@ VALGRIND = valgrind
 VALGRIND_FLAGS = --leak-check=full --show-reachable=yes
 # List of source files
 SOURCES = Menu.cpp testMenu.cpp Screen.cpp \
-Player.cpp Gameplay.cpp Bird.cpp Unflyable.cpp
+Player.cpp Gameplay.cpp Bird.cpp Unflyable.cpp\
+OriginalBird.cpp
 
 # List of object files
 OBJECTS = $(SOURCES:.cpp=.o)

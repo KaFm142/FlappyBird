@@ -25,6 +25,7 @@ class Screen {
   Screen();
   ~Screen();
   // virtual functions for polymophism
+  //virtual void popupWindow();
   virtual void displayBackground();
   virtual void action();
   // load and draw funtion

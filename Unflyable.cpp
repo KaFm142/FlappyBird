@@ -3,7 +3,7 @@
 #include "Screen.h"
 
 Unflyable::Unflyable() {
-  name = "yes";
+  name = "Unflyable";
   health = 1;
   speed = 1;
   height = 1;
@@ -14,6 +14,5 @@ Unflyable::Unflyable() {
 Unflyable::~Unflyable(){};
 
 void Unflyable::fly() {
-  xPosition += 2;
   yPosition -= 3;
 };

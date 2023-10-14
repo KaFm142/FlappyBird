@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "Screen.h"
-#include "Unflyable.h"
+#include "OriginalBird.h"
 
 class Gameplay : public Screen {
  private:
@@ -11,17 +11,19 @@ class Gameplay : public Screen {
   int time;
   sf::Texture birdTexture;
   sf::Sprite birdSprite;
-  Unflyable *unflyable;  
-bool pause = false; 
+  
+  OriginalBird *bird;
 
-  public:
-  Gameplay();
+  bool pause;
+  bool inAnimation;
+  int frame;
+
+      public : Gameplay();
   ~Gameplay();
-  
-  void displayBackground();
-  
-  void action(sf::Event event);
 
+  void displayBackground();
+
+  void action(sf::Event event);
 };
 
 #endif

@@ -24,13 +24,11 @@ class Bird {
 
   void hitObstance();
   virtual void fly();
+  void fall();
   void speedUp(float accel);
 
-  void setX(float xCoor);
-  void setY(float yCoor);
-
-  float getX();
-  float getY();
+  void setPosition(sf::Vector2f position);
+  sf::Vector2f getPosition();
 };
 
 #endif

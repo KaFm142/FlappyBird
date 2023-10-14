@@ -3,49 +3,49 @@
 Gameplay::Gameplay() {
   score = 0;
   time = 0;
+  frame = 0;
   window->setTitle("GamePlay");
-  unflyable = new Unflyable();
+  bird = new OriginalBird();
   displayBackground();
 }
 
-Gameplay::~Gameplay() { delete unflyable; }
+Gameplay::~Gameplay() { delete bird; }
 
 void Gameplay::displayBackground() {
   // Load textures and set up the sprite
   backgroundTexture = Screen::loadTexture("resources/screen.jpg");
   birdTexture = Screen::loadTexture("resources/birds/originalBird.png");
   birdSprite.setTexture(birdTexture);
-
-  bool inAnimation = false;
-
+  pause = false;
+  inAnimation = false;
   while (window->isOpen()) {
     sf::Event event;
-    int frame;
-    if (frame >= 60) {
-      inAnimation = false;
-    }
+
     while (window->pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
         window->close();
       }
       if (event.type == sf::Event::KeyPressed) {
         action(event);
-
-        if (event.key.code == sf::Keyboard::Space) {
-          frame = 0;
-          inAnimation = true;
-        }
       }
     }
+
+    if (frame >= 60) {
+      inAnimation = false;
+    }
+
     if (!pause) {
       sf::Vector2f position = birdSprite.getPosition();
+      bird->setPosition(position);
 
       if (inAnimation) {
-        position.y -= 2;
+        bird->fly();
+        position = bird->getPosition();
         frame++;
-      } else
-        position.y += 2;
-
+      } else {
+        bird->fall();
+        position = bird->getPosition();
+      }
       birdSprite.setPosition(position);
     }
     window->clear();
@@ -56,9 +56,12 @@ void Gameplay::displayBackground() {
 }
 
 void Gameplay::action(sf::Event event) {
-  if (event.key.code == sf::Keyboard::Space) std::cout << "yes" << std::endl;
+  if (event.key.code == sf::Keyboard::Space) {
+    inAnimation = true;
+    frame = 0;
+  };
 
-  if (event.key.code == sf::Keyboard::Q)
+  if (event.key.code == sf::Keyboard::Escape)
     pause = true;
   else if (event.type == sf::Event::KeyPressed)
     pause = false;
