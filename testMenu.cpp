@@ -2,5 +2,5 @@
 
 int main(void) {
   Menu menu;
-    menu.displayBackground();
+ 
 }

@@ -22,7 +22,7 @@ class Menu : public Screen {
   void displayBackground();
   void action();
   // Create Player for new player
-  void createPlayer();
+  std::string createPlayer();
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
