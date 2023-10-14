@@ -8,7 +8,7 @@ Menu::Menu() {
   displayBackground();
 }
 
-Menu::~Menu(){};
+Menu::~Menu() { delete player; };
 
 void Menu::displayBackground() {
   // Load the background texture
@@ -17,8 +17,9 @@ void Menu::displayBackground() {
   while (window->isOpen()) {
     sf::Event event;
     while (window->pollEvent(event)) {
-      // If there is close in the event pool list, close the window
-      if (event.type == sf::Event::Closed) {
+      // Close the window when hit 'Esc'
+      if (event.type == sf::Event::Closed ||
+          event.key.code == sf::Keyboard::Escape) {
         window->close();
         system("clear");
       }
@@ -127,7 +128,8 @@ std::string Menu::createPlayer() {
     // Event pool
     while (window->pollEvent(event)) {
       // Close the window
-      if (event.type == sf::Event::Closed) {
+      if (event.type == sf::Event::Closed ||
+          event.key.code == sf::Keyboard::Escape) {
         window->close();
         system("clear");
       }
