@@ -6,7 +6,8 @@ VALGRIND = valgrind
 # Flag to compile using valgrind
 VALGRIND_FLAGS = --leak-check=full --show-reachable=yes
 # List of source files
-SOURCES = Menu.cpp testMenu.cpp Screen.cpp Player.cpp
+SOURCES = Menu.cpp testMenu.cpp Screen.cpp \
+Player.cpp Gameplay.cpp Bird.cpp Unflyable.cpp
 
 # List of object files
 OBJECTS = $(SOURCES:.cpp=.o)

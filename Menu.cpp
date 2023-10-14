@@ -54,7 +54,8 @@ void Menu::action() {
       std::cout << "play" << std::endl;
       // Deactivate the playButton
       playButton = false;
-      std::cout << player->getName() << std::endl;
+      play();
+      playButton = true;
     }
   }
   // Mouse in Birds button
@@ -222,3 +223,7 @@ std::string Menu::namePlayer() {
   nameInput = "";
   return nameInput;
 };
+
+void Menu::play(){
+  Gameplay Gameplay;
+}

@@ -6,6 +6,7 @@
 
 #include "Player.h"
 #include "Screen.h"
+#include "Gameplay.h"
 
 class Menu : public Screen {
  private:
@@ -25,6 +26,7 @@ class Menu : public Screen {
   std::string namePlayer();
   void createPlayer();
   void displayPlayer();
+  void play();
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
