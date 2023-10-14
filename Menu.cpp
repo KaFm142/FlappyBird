@@ -2,8 +2,7 @@
 
 // The constructor set the title of the screen into "Menu" and create player
 Menu::Menu() {
-  player = new Player();
-  player->setName(createPlayer());
+  createPlayer();
   window->setTitle("MENU");
   displayBackground();
 }
@@ -34,6 +33,7 @@ void Menu::displayBackground() {
 }
 
 void Menu::action() {
+  backgroundTexture = Screen::loadTexture("resources/menu.jpg");
   // Create these to hold the button
   sf::Texture buttonTexture;
   sf::Sprite buttonSprite;
@@ -90,6 +90,22 @@ void Menu::action() {
       chooseButton = false;
     }
   }
+
+  // Mouse in Rename button
+  if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 462 && mouseY <= 508) {
+    // highlight button
+    buttonTexture = loadTexture("resources/menuRenameOn.jpg");
+    Screen::drawTexture(buttonTexture, 940, 444);
+    // Call for function
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButton) {
+      std::cout << "rename" << std::endl;
+      chooseButton = false;
+      player->setName(namePlayer());
+      chooseButton = true;
+      playButton = true;
+    }
+  }
+
   // Mouse in Delete button
   if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 544 && mouseY <= 590) {
     // highlight button
@@ -103,7 +119,13 @@ void Menu::action() {
   }
 }
 
-std::string Menu::createPlayer() {
+void Menu::createPlayer() {
+  // Allocate new memory address for player
+  player = new Player();
+  player->setName(namePlayer());
+}
+
+std::string Menu::namePlayer() {
   // Set up font and color
   sf::Font font;
   font.loadFromFile("resources/arial.ttf");
