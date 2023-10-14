@@ -19,7 +19,6 @@ class Screen {
 
  public:
   Screen();
-  Screen(float height, float width);
   ~Screen();
 
   virtual void displayBackground();

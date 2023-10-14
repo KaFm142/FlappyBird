@@ -9,8 +9,6 @@ Screen::Screen() {
   window->setFramerateLimit(120);
 };
 
-Screen::Screen(float height, float width) : height(height), width(width) {}
-
 Screen::~Screen(){};
 
 void Screen::displayBackground() {

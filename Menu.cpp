@@ -2,12 +2,11 @@
 
 Menu::Menu() {}
 
-Menu::Menu(float height, float width) : Screen(height, width){};
-
 Menu::~Menu(){};
 
 void Menu::displayBackground() {
   bool menuOpen = true;
+  
   backgroundTexture = loadTexture("resources/menu.jpg");
   backgroundSprite.setTexture(backgroundTexture);
 
@@ -15,7 +14,6 @@ void Menu::displayBackground() {
     sf::Event event;
     while (window->pollEvent(event)) {
       if (event.type == sf::Event::Closed) {
-        
         window->close();
         menuOpen = false;
         system ("clear");
@@ -43,7 +41,7 @@ sf::Texture Menu::loadTexture(std::string fileName){
 void Menu::action() {
   sf::Texture buttonTexture;
   sf::Sprite buttonSprite;
-  
+
   sf::Vector2i Mposition = sf::Mouse::getPosition(*window);
 
   float mouseX = static_cast<float>(Mposition.x);

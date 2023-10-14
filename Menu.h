@@ -14,7 +14,6 @@ class Menu : public Screen {
   
  public:
   Menu();
-  Menu(float height, float width);
   ~Menu();
 
   void displayBackground();
