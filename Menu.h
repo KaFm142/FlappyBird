@@ -1,3 +1,6 @@
+// This class is a heritage of "Screen", which is the display of menu screen
+// with its following funtion
+
 #ifndef MENU_H
 #define MENU_H
 
@@ -6,25 +9,23 @@
 
 class Menu : public Screen {
  private:
+  // Set up these to make sure only 1 click is allowed
   bool playButton = true;
   bool chooseButton = true;
   Player *player;
 
  public:
+  // Class constructor and destructor
   Menu();
   ~Menu();
 
   void displayBackground();
   void action();
 
-  sf::Texture loadTexture(std::string fileName);
-  void drawTexture(sf::Texture texture, int x, int y);
-  
   //   void createPlayer();
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
-  //   void rename();
   //   void deleteProgess();
 };
 
