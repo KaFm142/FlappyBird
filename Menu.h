@@ -7,8 +7,7 @@
 class Menu : public Screen {
  
  private:
-  sf::Texture buttonTexture;
-  sf::Sprite buttonSprite;
+  
   bool playButton = true;
   bool chooseButton = true;
   Player *player;
@@ -20,6 +19,8 @@ class Menu : public Screen {
 
   void displayBackground();
   void action();
+
+  sf::Texture loadTexture(std::string fileName);
 
   //   void createPlayer();
   //   void chooseDifficulty();

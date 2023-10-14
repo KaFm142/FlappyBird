@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Window/Mouse.hpp>
+#include <stdlib.h>
 #include <iostream>
 
 class Screen {
