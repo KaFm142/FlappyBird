@@ -9,11 +9,17 @@ Player::Player() {
 }
 
 // Initialize the function
-int Player::getHighscore() { return this->highscore; }
+int Player::getHighscore() {
+  load();
+  return this->highscore;
+}
 
 void Player::setHighscore(int score) { this->highscore = score; }
 
-std::string Player::getName() { return this->name; }
+std::string Player::getName() {
+  load();
+  return this->name;
+}
 
 void Player::setName(std::string name) { this->name = name; }
 
@@ -31,10 +37,10 @@ int Player::getMode() { return this->mode; }
 
 void Player::setMode(int mode) { this->mode = mode; }
 
-void Player::save() {
+void Player::save(std::string nameS, int highscoreS) {
   json playerData;
-  playerData["name"] = name;
-  playerData["highscore"] = highscore;
+  playerData["name"] = nameS;
+  playerData["highscore"] = highscoreS;
 
   std::ofstream outputFile("save.json");
   if (outputFile.is_open()) {

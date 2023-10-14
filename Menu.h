@@ -30,7 +30,7 @@ class Menu : public Screen {
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
-  //   void deleteProgess();
+   void deleteProgess();
 };
 
 #endif

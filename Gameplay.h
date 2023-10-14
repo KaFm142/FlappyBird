@@ -3,6 +3,8 @@
 
 #include "Player.h"
 #include "Screen.h"
+#include "Menu.h"
+
 #include "OriginalBird.h"
 
 class Gameplay : public Screen {
@@ -24,6 +26,8 @@ class Gameplay : public Screen {
   void displayBackground();
 
   void action(sf::Event event);
+  void endgame();
+  void save();
 };
 
 #endif

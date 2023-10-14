@@ -38,7 +38,7 @@ class Player {
   int getMode();
   void setMode(int mode);
 
-  void save();
+  void save(std::string nameS, int highscoreS);
   void load();
   // void createBird(std::string choosenBirds);
 };

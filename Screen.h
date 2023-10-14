@@ -9,6 +9,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Window/Mouse.hpp>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 class Screen {
  protected:

@@ -38,6 +38,14 @@ void Gameplay::displayBackground() {
       sf::Vector2f position = birdSprite.getPosition();
       bird->setPosition(position);
 
+      if (position.y >= 540) {
+        score++;
+
+        save();
+        endgame();
+        break;
+      }
+
       if (inAnimation) {
         bird->fly();
         position = bird->getPosition();
@@ -57,6 +65,8 @@ void Gameplay::displayBackground() {
 
 void Gameplay::action(sf::Event event) {
   if (event.key.code == sf::Keyboard::Space) {
+    score++;
+
     inAnimation = true;
     frame = 0;
   };
@@ -65,4 +75,36 @@ void Gameplay::action(sf::Event event) {
     pause = true;
   else if (event.type == sf::Event::KeyPressed)
     pause = false;
+}
+
+void Gameplay::save() {
+  json playerData;
+
+  std::ifstream inputFile("save.json");
+  if (inputFile.is_open()) {
+    inputFile >> playerData;
+    inputFile.close();
+  }
+  int curScore = playerData["highscore"];
+
+  std::cout << "Cur" << curScore << std::endl;
+  curScore += score;
+  playerData["highscore"] = curScore;
+
+  std::cout << score << std::endl;
+  playerData["name"] = "KaFm";
+
+  std::ofstream outputFile("save.json");
+  if (outputFile.is_open()) {
+    outputFile << playerData.dump(4);
+    outputFile.close();
+  } else {
+    std::cerr << "error in saving" << std::endl;
+  }
+}
+
+void Gameplay::endgame() {
+  // Animation
+
+  window->close();
 }

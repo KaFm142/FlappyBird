@@ -116,8 +116,14 @@ void Menu::action() {
     Screen::drawTexture(buttonTexture, 972, 530);
     // Call for function
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButton) {
-      std::cout << "delete" << std::endl;
+      std::cout << " you sure to delete?" << std::endl;
+      char res;
+      std::cin >> res;
       chooseButton = false;
+      if (res == 'y') {
+        deleteProgess();
+      }
+      chooseButton = true;
     }
   }
 }
@@ -138,6 +144,7 @@ void Menu::displayPlayer() {
   // Set up text and display
   sf::Text textName;
   textName.setString(player->getName());
+  //std::cout<<player->getName() <<std::endl;
   textName.setFont(font);
   textName.setCharacterSize(40);
   textName.setPosition(110, 25);
@@ -146,6 +153,7 @@ void Menu::displayPlayer() {
 
   // Set up score and display
   sf::Text textScore;
+
   // convert the score to string
   std::string score = std::to_string(player->getHighscore());
   textScore.setString(score);
@@ -204,6 +212,7 @@ std::string Menu::namePlayer() {
       if (event.type == sf::Event::KeyPressed) {
         // 'Enter' mean finish, return the name
         if (event.key.code == sf::Keyboard::Enter) {
+          player->save(nameInput, player->getHighscore());
           return nameInput;
         }
         // 'Backspace' to delete previous
@@ -227,7 +236,14 @@ std::string Menu::namePlayer() {
 };
 
 void Menu::play() {
-  player->save();
-  window->close();
+  player->save(player->getName(), player->getHighscore());
+  player->load();
+  std::cout << "display " << player->getHighscore() << std::endl;
+  // window->close();
   Gameplay Gameplay;
+}
+
+void Menu::deleteProgess() {
+  player->save("", 0);
+  window->close();
 }
