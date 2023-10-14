@@ -28,6 +28,8 @@ void Menu::displayBackground() {
     Screen::drawTexture(backgroundTexture, 0, 0);
     // Action that take place
     action();
+    // Display name and point
+    displayPlayer();
     window->display();
   }
 }
@@ -125,6 +127,32 @@ void Menu::createPlayer() {
   player->setName(namePlayer());
 }
 
+void Menu::displayPlayer() {
+  // Set up font and color
+  sf::Font font;
+  font.loadFromFile("resources/arial.ttf");
+  sf::Color color(243, 219, 68);
+  // Set up text and display
+  sf::Text textName;
+  textName.setString(player->getName());
+  textName.setFont(font);
+  textName.setCharacterSize(40);
+  textName.setPosition(110, 25);
+  textName.setFillColor(color);
+  window->draw(textName);
+
+  // Set up score and display
+  sf::Text textScore;
+  // convert the score to string
+  std::string score = std::to_string(player->getHighscore());
+  textScore.setString(score);
+  textScore.setFont(font);
+  textScore.setCharacterSize(40);
+  textScore.setPosition(110, 72);
+  textScore.setFillColor(color);
+  window->draw(textScore);
+}
+
 std::string Menu::namePlayer() {
   // Set up font and color
   sf::Font font;
@@ -161,8 +189,8 @@ std::string Menu::namePlayer() {
         // Ignore the backspace key, we handle it later
         if (event.text.unicode != '\b')
           if (event.text.unicode < 128) {
-            // Only 15 letter is allow
-            if (nameInput.getSize() < 15) {
+            // Only 6 letter is allow
+            if (nameInput.getSize() < 6) {
               // Update the input string
               nameInput += static_cast<char>(event.text.unicode);
               textDisplay.setString(nameInput);

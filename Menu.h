@@ -24,6 +24,7 @@ class Menu : public Screen {
   // Create Player for new player
   std::string namePlayer();
   void createPlayer();
+  void displayPlayer();
   //   void chooseDifficulty();
   //   void chooseBackground();
   //   void chooseBird();
