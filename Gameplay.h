@@ -50,8 +50,10 @@ class Gameplay : public Screen {
   // Save the progress
   void save();
 
-  // Display time
+  // Display time and point
   void displayTime(int second);
+  void displayScore();
+
 
 };
 

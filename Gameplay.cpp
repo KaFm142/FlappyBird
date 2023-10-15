@@ -99,6 +99,7 @@ void Gameplay::displayBackground() {
     drawTexture(backgroundTexture, 0, 0);
     window->draw(birdSprite);
     displayTime(second);
+    displayScore();
     window->display();
   }
 }
@@ -170,11 +171,25 @@ void Gameplay::displayTime(int second) {
   font.loadFromFile("resources/arial.ttf");
 
   sf::Text timeText;
-  timeText.setString(std::to_string(second));
+  timeText.setString("Time: " + std::to_string(second));
   timeText.setFont(font);
-  timeText.setCharacterSize(50);
-  timeText.setFillColor(sf::Color::Black);
-  timeText.setPosition(10, 10);
+  timeText.setCharacterSize(40);
+  timeText.setFillColor(sf::Color::Yellow);
+  timeText.setPosition(930, 10);
 
   window->draw(timeText);
+}
+
+void Gameplay::displayScore() {
+  sf::Font font;
+  font.loadFromFile("resources/arial.ttf");
+
+  sf::Text scoreText;
+  scoreText.setString("Point: " + std::to_string(score));
+  scoreText.setFont(font);
+  scoreText.setCharacterSize(40);
+  scoreText.setFillColor(sf::Color::Yellow);
+  scoreText.setPosition(930, 60);
+
+  window->draw(scoreText);
 }
