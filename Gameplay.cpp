@@ -26,7 +26,7 @@ void Gameplay::displayBackground() {
   backgroundTexture = Screen::loadTexture("resources/screen.jpg");
   birdTexture = Screen::loadTexture("resources/birds/originalBird.png");
   birdSprite.setTexture(birdTexture);
-
+  birdSprite.setPosition(bird->getPosition());
   // Gameplay state
   while (window->isOpen()) {
     sf::Event event;
@@ -141,7 +141,6 @@ void Gameplay::save() {
 // Endgame functiom
 void Gameplay::endgame() {
   // Animation
-
 
   // Close the window
   window->close();

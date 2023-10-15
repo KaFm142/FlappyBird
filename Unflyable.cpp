@@ -6,7 +6,7 @@ Unflyable::Unflyable() {
   speed = 1;
   height = 1;
   width = 1;
-  xPosition = 50;
+  xPosition = 100;
   yPosition = 100;
 };
 // Destructor
@@ -14,5 +14,5 @@ Unflyable::~Unflyable(){};
 
 // Bird falling
 void Unflyable::fly() {
-  yPosition -= 3;
+  if (yPosition > 0) yPosition -= 3;
 };
