@@ -72,25 +72,28 @@ void Gameplay::displayBackground() {
 
     if (second == spawnSec && !obstancleSpawned) {
       spawnSec += 5;
-      obstancleSpawned = true;
-      usedPipes = spawnObstancle();
-      if (usedPipes <= -1) {
-        std::cout << "fail to spawn" << std::endl;
-      } else {
-        std::cout << "using: " << usedPipes << std::endl;
-      };
-
+      if (!pause) {
+        score++;
+        obstancleSpawned = true;
+        usedPipes = spawnObstancle();
+        if (usedPipes <= -1) {
+          std::cout << "fail to spawn" << std::endl;
+        } else {
+                    for (int i = 0; i < 5; i++) {
+            if (i != usedPipes) {
+              delete pipes[i];
+              pipes[i] = new Pipes();
+            }
+          }
+          std::cout << "using: " << usedPipes << std::endl;
+          std::cout << "gapStart: " << pipes[usedPipes]->getGapY() << std::endl;
+        };
+      }
     } else {
       obstancleSpawned = false;
     }
 
     // Delete other pipe
-    for (int i = 0; i < 5; i++) {
-      if (i != usedPipes) {
-        delete pipes[i];
-        pipes[i] = new Pipes();
-      }
-    }
 
     // Set inAnimation back to false mean an action has been finished
     if (frame >= 60) {
@@ -105,6 +108,7 @@ void Gameplay::displayBackground() {
           pipePositions[i] = pipeSprites[i].getPosition();
           pipePositions[i].x -= 4;
           pipeSprites[i].setPosition(pipePositions[i]);
+          pipes[i]->setPosition(pipePositions[i]);
         }
       }
 
@@ -113,6 +117,8 @@ void Gameplay::displayBackground() {
       bird->setPosition(birdPosition);
 
       // Check for condition of losing
+      checkColapse(usedPipes);
+
       if (birdPosition.y >= 540) {
         // Save the progress
         save();
@@ -154,7 +160,6 @@ void Gameplay::displayBackground() {
 void Gameplay::action(sf::Event event) {
   // The bird will fly if player hit 'space'
   if (event.key.code == sf::Keyboard::Space) {
-    score++;
     // Set to know that an action is take place
     inAnimation = true;
     frame = 0;
@@ -244,7 +249,7 @@ int Gameplay::spawnObstancle() {
   std::random_device rand;
   std::mt19937 seed(rand());
 
-  std::uniform_int_distribution<int> dist(10, 570);
+  std::uniform_int_distribution<int> dist(30, 520);
   int obstancle_Y = dist(seed);
 
   for (int i; i < 5; i++) {
@@ -263,3 +268,22 @@ int Gameplay::spawnObstancle() {
   return -1;
 }
 void Gameplay::displayObstancle(int used) { window->draw(pipeSprites[used]); };
+
+void Gameplay::checkColapse(int used) {
+  int birdEnd = birdPosition.x + 80;
+  int gapStart = pipes[used]->getGapY();
+  int pipesX = pipes[used]->getPosition().x;
+  int pipeEnd = pipesX + 60;
+
+  std::cout << "Bx: " << birdEnd << std::endl;
+  std::cout << "By: " << birdPosition.y << std::endl;
+  std::cout << "Px: " << pipesX << std::endl;
+  std::cout << "Py: " << gapStart << std::endl;
+
+  if (birdEnd >= pipesX && birdEnd <= pipeEnd) {
+    if (birdPosition.y <= gapStart || birdPosition.y > gapStart + 184) {
+      save();
+      endgame();
+    }
+  }
+}

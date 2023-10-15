@@ -55,6 +55,8 @@ class Gameplay : public Screen {
 
   int spawnObstancle();
   void displayObstancle(int used);
+
+  void checkColapse(int used);
 };
 
 #endif
