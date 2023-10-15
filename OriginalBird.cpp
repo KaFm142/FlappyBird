@@ -3,8 +3,8 @@
 // Class constructor
 OriginalBird::OriginalBird() {
   // set up basic information
-  health = 1;
-  speed = 3;
+  health = 3;
+  speed = 4;
   xPosition =  100;
   yPosition = 100;
 }

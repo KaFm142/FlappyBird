@@ -14,23 +14,16 @@ Bird::Bird() {
 Bird::~Bird(){};
 
 // Reduce health if player hit obstances
-void Bird::hitObstance() {
-  if (health != 1) {
-    health--;
-  }
+int Bird::hitObstance() {
+  health--;
+  return health;
 }
 
 // Fly method
 void Bird::fly(){};
 
-
 // Bird falling
-void Bird::fall(){
-  yPosition += speed;
-}
-
-// Speed up
-void Bird::speedUp(float accel) { speed += accel; };
+void Bird::fall() { yPosition += speed; }
 
 // get and set for the bird position
 void Bird::setPosition(sf::Vector2f position) {
@@ -44,3 +37,9 @@ sf::Vector2f Bird::getPosition() {
   position.y = yPosition;
   return position;
 }
+
+int Bird::getHealth() { return health; }
+
+int Bird::getSpeed() { return speed; }
+
+void Bird::speedUp(float accel) { speed +=accel; }
