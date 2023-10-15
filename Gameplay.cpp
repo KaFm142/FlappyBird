@@ -13,13 +13,13 @@ Gameplay::Gameplay() {
   bird = new OriginalBird();
 
   // Create pipes;
-  pipes = new Pipes *[3];
-  for (int i = 0; i < 3; i++) {
+  pipes = new Pipes *[5];
+  for (int i = 0; i < 5; i++) {
     pipes[i] = new Pipes();
   }
-  pipeTextures = new sf::Texture[3];
-  pipeSprites = new sf::Sprite[3];
-  pipePositions = new sf::Vector2i[3];
+  pipeTextures = new sf::Texture[5];
+  pipeSprites = new sf::Sprite[5];
+  pipePositions = new sf::Vector2f[5];
   // Display background and come to gaming state
   displayBackground();
 }
@@ -27,7 +27,7 @@ Gameplay::Gameplay() {
 // Destructor
 Gameplay::~Gameplay() {
   delete bird;
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 5; i++) {
     delete pipes[i];
   }
   delete[] pipes;
@@ -50,8 +50,8 @@ void Gameplay::displayBackground() {
   sf::Clock clock;
 
   bool obstancleSpawned = false;
-  int usedPipes = -5;
-  int spawnSec = 5;
+  int usedPipes = 0;
+  int spawnSec = 0;
   // Gameplay state
   while (window->isOpen()) {
     sf::Event event;
@@ -84,6 +84,14 @@ void Gameplay::displayBackground() {
       obstancleSpawned = false;
     }
 
+    // Delete other pipe
+    for (int i = 0; i < 5; i++) {
+      if (i != usedPipes) {
+        delete pipes[i];
+        pipes[i] = new Pipes();
+      }
+    }
+
     // Set inAnimation back to false mean an action has been finished
     if (frame >= 60) {
       inAnimation = false;
@@ -91,6 +99,15 @@ void Gameplay::displayBackground() {
 
     // The game, variable will be update if the game is not pause
     if (!pause) {
+      // Update pipes position
+      for (int i = 0; i < 5; i++) {
+        if (pipes[i]->getGapY() != 0 && pipes[i] != nullptr) {
+          pipePositions[i] = pipeSprites[i].getPosition();
+          pipePositions[i].x -= 4;
+          pipeSprites[i].setPosition(pipePositions[i]);
+        }
+      }
+
       // Get the position
       birdPosition = birdSprite.getPosition();
       bird->setPosition(birdPosition);
@@ -122,7 +139,11 @@ void Gameplay::displayBackground() {
     // clear old frame and display new
     window->clear();
     drawTexture(backgroundTexture, 0, 0);
+
+    displayObstancle(usedPipes);
+
     window->draw(birdSprite);
+
     displayTime(second);
     displayScore();
     window->display();
@@ -226,7 +247,7 @@ int Gameplay::spawnObstancle() {
   std::uniform_int_distribution<int> dist(10, 570);
   int obstancle_Y = dist(seed);
 
-  for (int i = 0; i < 3; i++) {
+  for (int i; i < 5; i++) {
     if (pipes[i]->getGapY() == 0) {
       pipeTextures[i] = Screen::loadTexture("resources/pipes.png");
       pipeSprites[i].setTexture(pipeTextures[i]);
@@ -235,10 +256,10 @@ int Gameplay::spawnObstancle() {
 
       pipes[i]->setPosition(pipePositions[i]);
       pipes[i]->setGapY(obstancle_Y);
+      pipeSprites[i].setPosition(pipes[i]->getPosition());
       return i;
     }
   }
   return -1;
 }
-
-void Gameplay::displayObstancle(int number) {}
+void Gameplay::displayObstancle(int used) { window->draw(pipeSprites[used]); };

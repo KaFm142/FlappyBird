@@ -12,8 +12,8 @@ class Obstancles {
   Obstancles();
   ~Obstancles();
 
-  void setPosition(sf::Vector2i position);
-  sf::Vector2i getPosition();
+  void setPosition(sf::Vector2f position);
+  sf::Vector2f getPosition();
 };
 
 #endif

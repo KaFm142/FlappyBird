@@ -7,13 +7,13 @@ Obstancles::Obstancles() {
 
 Obstancles::~Obstancles() {}
 
-void Obstancles::setPosition(sf::Vector2i position) {
+void Obstancles::setPosition(sf::Vector2f position) {
   positionX = position.x;
   positionY = position.y;
 }
 
-sf::Vector2i Obstancles::getPosition() {
-  sf::Vector2i position;
+sf::Vector2f Obstancles::getPosition() {
+  sf::Vector2f position;
   position.x = positionX;
   position.y = positionY;
   return position;

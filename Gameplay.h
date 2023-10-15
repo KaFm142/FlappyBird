@@ -23,7 +23,7 @@ class Gameplay : public Screen {
   // Texture, sprite and position of Obstancles
   sf::Texture* pipeTextures;    
   sf::Sprite* pipeSprites;      
-  sf::Vector2i* pipePositions;  
+  sf::Vector2f* pipePositions;  
   // List of Obstancles
   Pipes** pipes;
 
@@ -54,7 +54,7 @@ class Gameplay : public Screen {
   void displayScore();
 
   int spawnObstancle();
-  void displayObstancle(int number);
+  void displayObstancle(int used);
 };
 
 #endif
