@@ -6,6 +6,14 @@
 class Pipes : public Obstancles {
  private:
   const int gapWidth = 135;
+  int gapY;
+
+ public:
+  Pipes();
+  ~Pipes();
+
+  int getGapY();
+  void setGapY(int gap);
 };
 
 #endif

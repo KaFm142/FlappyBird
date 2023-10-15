@@ -4,7 +4,6 @@
 Gameplay::Gameplay() {
   // Initialize the variable
   score = 0;
-  time = 0;
   frame = 0;
   window->setTitle("GamePlay");
   pause = false;
@@ -14,22 +13,28 @@ Gameplay::Gameplay() {
   bird = new OriginalBird();
 
   // Create pipes;
-  pipes = new Pipes*[5];
-  for (int i = 0; i < 5; i++) {
+  pipes = new Pipes *[3];
+  for (int i = 0; i < 3; i++) {
     pipes[i] = new Pipes();
   }
-
+  pipeTextures = new sf::Texture[3];
+  pipeSprites = new sf::Sprite[3];
+  pipePositions = new sf::Vector2i[3];
   // Display background and come to gaming state
   displayBackground();
 }
 
-// Destructor to delete Birds
+// Destructor
 Gameplay::~Gameplay() {
   delete bird;
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 3; i++) {
     delete pipes[i];
   }
   delete[] pipes;
+
+  delete[] pipePositions;
+  delete[] pipeSprites;
+  delete[] pipeTextures;
 }
 
 // Display background and come to gaming state
@@ -41,7 +46,12 @@ void Gameplay::displayBackground() {
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(bird->getPosition());
 
+  // Setup a clock for gaming purpose
   sf::Clock clock;
+
+  bool obstancleSpawned = false;
+  int usedPipes = -5;
+  int spawnSec = 5;
   // Gameplay state
   while (window->isOpen()) {
     sf::Event event;
@@ -56,8 +66,23 @@ void Gameplay::displayBackground() {
       }
     }
 
+    // Calculate elapsed time
     sf::Time inGame = clock.getElapsedTime();
     int second = static_cast<int>(inGame.asSeconds());
+
+    if (second == spawnSec && !obstancleSpawned) {
+      spawnSec += 5;
+      obstancleSpawned = true;
+      usedPipes = spawnObstancle();
+      if (usedPipes <= -1) {
+        std::cout << "fail to spawn" << std::endl;
+      } else {
+        std::cout << "using: " << usedPipes << std::endl;
+      };
+
+    } else {
+      obstancleSpawned = false;
+    }
 
     // Set inAnimation back to false mean an action has been finished
     if (frame >= 60) {
@@ -193,3 +218,27 @@ void Gameplay::displayScore() {
 
   window->draw(scoreText);
 }
+
+int Gameplay::spawnObstancle() {
+  std::random_device rand;
+  std::mt19937 seed(rand());
+
+  std::uniform_int_distribution<int> dist(10, 570);
+  int obstancle_Y = dist(seed);
+
+  for (int i = 0; i < 3; i++) {
+    if (pipes[i]->getGapY() == 0) {
+      pipeTextures[i] = Screen::loadTexture("resources/pipes.png");
+      pipeSprites[i].setTexture(pipeTextures[i]);
+      pipePositions[i].x = 1200;
+      pipePositions[i].y = obstancle_Y - 532;
+
+      pipes[i]->setPosition(pipePositions[i]);
+      pipes[i]->setGapY(obstancle_Y);
+      return i;
+    }
+  }
+  return -1;
+}
+
+void Gameplay::displayObstancle(int number) {}

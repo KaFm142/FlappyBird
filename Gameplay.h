@@ -13,7 +13,6 @@ class Gameplay : public Screen {
  private:
   // Time and Score
   int score;
-  int time;
   // Texture, sprite and position of Bird
   sf::Texture birdTexture;
   sf::Sprite birdSprite;
@@ -21,12 +20,12 @@ class Gameplay : public Screen {
   // List of available character
   OriginalBird* bird;
 
-  //Texture, sprite and position of Obstancles
-
-
+  // Texture, sprite and position of Obstancles
+  sf::Texture* pipeTextures;    
+  sf::Sprite* pipeSprites;      
+  sf::Vector2i* pipePositions;  
   // List of Obstancles
   Pipes** pipes;
-
 
   // Other variable for gameplay purpose
   bool pause;
@@ -54,7 +53,8 @@ class Gameplay : public Screen {
   void displayTime(int second);
   void displayScore();
 
-
+  int spawnObstancle();
+  void displayObstancle(int number);
 };
 
 #endif

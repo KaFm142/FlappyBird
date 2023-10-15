@@ -3,15 +3,16 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+#include <math.h>
 #include <stdlib.h>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Window/Mouse.hpp>
-#include <iostream>
 #include <chrono>
+#include <iostream>
+#include <random>
 #include <thread>
-#include <math.h>
 
 class Screen {
  protected:
@@ -28,7 +29,7 @@ class Screen {
   Screen();
   ~Screen();
   // virtual functions for polymophism
-  //virtual void popupWindow();
+  // virtual void popupWindow();
   virtual void displayBackground();
   virtual void action();
   // load and draw funtion
