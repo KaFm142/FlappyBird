@@ -5,6 +5,7 @@
 
 #include "Menu.h"
 #include "OriginalBird.h"
+#include "Pipes.h"
 #include "Player.h"
 #include "Screen.h"
 
@@ -18,7 +19,14 @@ class Gameplay : public Screen {
   sf::Sprite birdSprite;
   sf::Vector2f birdPosition;
   // List of available character
-  OriginalBird *bird;
+  OriginalBird* bird;
+
+  //Texture, sprite and position of Obstancles
+
+
+  // List of Obstancles
+  Pipes** pipes;
+
 
   // Other variable for gameplay purpose
   bool pause;
@@ -41,6 +49,10 @@ class Gameplay : public Screen {
 
   // Save the progress
   void save();
+
+  // Display time
+  void displayTime(int second);
+
 };
 
 #endif

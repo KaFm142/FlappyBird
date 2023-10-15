@@ -12,12 +12,25 @@ Gameplay::Gameplay() {
 
   // Create and allocate Birds using new
   bird = new OriginalBird();
+
+  // Create pipes;
+  pipes = new Pipes*[5];
+  for (int i = 0; i < 5; i++) {
+    pipes[i] = new Pipes();
+  }
+
   // Display background and come to gaming state
   displayBackground();
 }
 
 // Destructor to delete Birds
-Gameplay::~Gameplay() { delete bird; }
+Gameplay::~Gameplay() {
+  delete bird;
+  for (int i = 0; i < 5; i++) {
+    delete pipes[i];
+  }
+  delete[] pipes;
+}
 
 // Display background and come to gaming state
 
@@ -27,6 +40,8 @@ void Gameplay::displayBackground() {
   birdTexture = Screen::loadTexture("resources/birds/originalBird.png");
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(bird->getPosition());
+
+  sf::Clock clock;
   // Gameplay state
   while (window->isOpen()) {
     sf::Event event;
@@ -40,6 +55,9 @@ void Gameplay::displayBackground() {
         action(event);
       }
     }
+
+    sf::Time inGame = clock.getElapsedTime();
+    int second = static_cast<int>(inGame.asSeconds());
 
     // Set inAnimation back to false mean an action has been finished
     if (frame >= 60) {
@@ -80,6 +98,7 @@ void Gameplay::displayBackground() {
     window->clear();
     drawTexture(backgroundTexture, 0, 0);
     window->draw(birdSprite);
+    displayTime(second);
     window->display();
   }
 }
@@ -144,4 +163,18 @@ void Gameplay::endgame() {
 
   // Close the window
   window->close();
+}
+
+void Gameplay::displayTime(int second) {
+  sf::Font font;
+  font.loadFromFile("resources/arial.ttf");
+
+  sf::Text timeText;
+  timeText.setString(std::to_string(second));
+  timeText.setFont(font);
+  timeText.setCharacterSize(50);
+  timeText.setFillColor(sf::Color::Black);
+  timeText.setPosition(10, 10);
+
+  window->draw(timeText);
 }
