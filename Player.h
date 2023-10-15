@@ -5,9 +5,10 @@
 
 #include <fstream>
 #include <iostream>
-#include "nlohmann/json.hpp"
 #include <string>
 
+// Using Json to save game progress
+#include "nlohmann/json.hpp"
 using json = nlohmann::json;
 
 class Player {
@@ -22,7 +23,7 @@ class Player {
  public:
   // Constructor
   Player();
-
+  // Get and set function
   int getHighscore();
   void setHighscore(int score);
 
@@ -38,8 +39,10 @@ class Player {
   int getMode();
   void setMode(int mode);
 
-  void save(std::string nameS, int highscoreS);
-  void load();
+  // Function to save, load and delete Progress
+  void saveProgress(std::string nameS, int highscoreS);
+  void loadProgress();
+  void deleteProgress();
   // void createBird(std::string choosenBirds);
 };
 

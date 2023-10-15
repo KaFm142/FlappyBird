@@ -144,7 +144,7 @@ void Menu::displayPlayer() {
   // Set up text and display
   sf::Text textName;
   textName.setString(player->getName());
-  //std::cout<<player->getName() <<std::endl;
+  // std::cout<<player->getName() <<std::endl;
   textName.setFont(font);
   textName.setCharacterSize(40);
   textName.setPosition(110, 25);
@@ -212,7 +212,7 @@ std::string Menu::namePlayer() {
       if (event.type == sf::Event::KeyPressed) {
         // 'Enter' mean finish, return the name
         if (event.key.code == sf::Keyboard::Enter) {
-          player->save(nameInput, player->getHighscore());
+          player->saveProgress(nameInput, player->getHighscore());
           return nameInput;
         }
         // 'Backspace' to delete previous
@@ -236,14 +236,14 @@ std::string Menu::namePlayer() {
 };
 
 void Menu::play() {
-  player->save(player->getName(), player->getHighscore());
-  player->load();
+  player->saveProgress(player->getName(), player->getHighscore());
+  player->loadProgress();
   std::cout << "display " << player->getHighscore() << std::endl;
   // window->close();
   Gameplay Gameplay;
 }
 
 void Menu::deleteProgess() {
-  player->save("", 0);
-  window->close();
+  player->deleteProgress();
+  createPlayer();
 }

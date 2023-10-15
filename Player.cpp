@@ -2,22 +2,23 @@
 
 // Constructor
 Player::Player() {
-  load();
+  loadProgress();
   choosenBackground = "";
   choosenBirds = "";
   mode = 1;
 }
 
-// Initialize the function
+// Initialize the set and get functions
 int Player::getHighscore() {
-  load();
+  // load player befor get the highscore
+  loadProgress();
   return this->highscore;
 }
 
 void Player::setHighscore(int score) { this->highscore = score; }
 
 std::string Player::getName() {
-  load();
+  loadProgress();
   return this->name;
 }
 
@@ -37,29 +38,47 @@ int Player::getMode() { return this->mode; }
 
 void Player::setMode(int mode) { this->mode = mode; }
 
-void Player::save(std::string nameS, int highscoreS) {
+// Save function
+void Player::saveProgress(std::string nameSave, int highscoreSave) {
+  // Create a temporary json to hold datas
   json playerData;
-  playerData["name"] = nameS;
-  playerData["highscore"] = highscoreS;
+  playerData["name"] = nameSave;
+  playerData["highscore"] = highscoreSave;
 
+  // Open file
   std::ofstream outputFile("save.json");
   if (outputFile.is_open()) {
+    // Write data and close file
     outputFile << playerData.dump(4);
     outputFile.close();
   } else {
+    // Display error message
     std::cerr << "error in saving" << std::endl;
   }
 };
 
-void Player::load() {
+// Load function
+void Player::loadProgress() {
+  // Open save file
   std::ifstream inputFile("save.json");
   if (inputFile.is_open()) {
     json playerData;
+    // Get tha data and hold it to a temporary json
     inputFile >> playerData;
+    // Set the player name and highscore according to the save
     name = playerData["name"];
     highscore = playerData["highscore"];
+
+    // Close the file
     inputFile.close();
   } else {
+    // Error handling
     std::cerr << "error in loading" << std::endl;
   }
+}
+
+// Delete Function
+void Player::deleteProgress() {
+  // Delete is saving null and 0 in to the save file
+  saveProgress("", 0);
 }
