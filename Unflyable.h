@@ -1,3 +1,5 @@
+// This class present a group of unflyable bird
+
 #ifndef UNFLYABLE_H
 #define UNFLYABLE_H
 
@@ -5,9 +7,11 @@
 
 class Unflyable: public Bird{
     public:
+    // Class constructor and destructor 
     Unflyable();
     ~Unflyable();
     
+    // Different flying method
     void fly();
 };
 

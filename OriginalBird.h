@@ -1,12 +1,15 @@
+// this clas is the original of the game Flappy Bird
+
 #ifndef ORIGINALBIRD_H
 #define ORIGINALBIRD_H
 
 #include "Unflyable.h"
 
 class OriginalBird : public Unflyable {
-    public:
-    OriginalBird();
-    ~OriginalBird();
+ public:
+  // class constructor and destructor
+  OriginalBird();
+  ~OriginalBird();
 };
 
 #endif

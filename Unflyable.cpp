@@ -1,9 +1,7 @@
 #include "Unflyable.h"
 
-#include "Screen.h"
-
+// Class constructor
 Unflyable::Unflyable() {
-  name = "Unflyable";
   health = 1;
   speed = 1;
   height = 1;
@@ -11,8 +9,10 @@ Unflyable::Unflyable() {
   xPosition = 50;
   yPosition = 100;
 };
+// Destructor
 Unflyable::~Unflyable(){};
 
+// Bird falling
 void Unflyable::fly() {
   yPosition -= 3;
 };

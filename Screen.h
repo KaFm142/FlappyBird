@@ -11,6 +11,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <math.h>
 
 class Screen {
  protected:

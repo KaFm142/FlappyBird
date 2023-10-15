@@ -10,7 +10,7 @@
 
 class Bird {
  protected:
-  std::string name;
+ // Variable of the bird
   int health;
   float speed;
   float height;
@@ -19,14 +19,17 @@ class Bird {
   float yPosition;
 
  public:
+ // Constructor and destructor
   Bird();
   virtual ~Bird();
 
+  // Other function
   void hitObstance();
   virtual void fly();
-  void fall();
+  virtual void fall();
   void speedUp(float accel);
 
+  // set and get function
   void setPosition(sf::Vector2f position);
   sf::Vector2f getPosition();
 };
