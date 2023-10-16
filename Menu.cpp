@@ -53,12 +53,10 @@ void Menu::action() {
     buttonTexture = loadTexture("resources/menuPlayOn.jpg");
     drawTexture(buttonTexture, 490, 190);
     // Call for function when player click
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && playButton) {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "play" << std::endl;
       // Deactivate the playButton
-      playButton = false;
       play();
-      playButton = true;
     }
   }
   // Mouse in Birds button
@@ -67,68 +65,76 @@ void Menu::action() {
     buttonTexture = loadTexture("resources/menuBirdsOn.jpg");
     Screen::drawTexture(buttonTexture, 493, 285);
     // Call for function
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButton) {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !birdPopup) {
       std::cout << "birds" << std::endl;
-      // Deactivate the chooseButton
-      chooseButton = false;
+      // Deactivate the inPopup
+
+      birdPopup = true;
     }
   }
   // Mouse in Background button
-  if (mouseX >= 490 && mouseX <= 750 && mouseY >= 385 && mouseY <= 450) {
+  else if (mouseX >= 490 && mouseX <= 750 && mouseY >= 385 && mouseY <= 450) {
     // Highlight button
     buttonTexture = loadTexture("resources/menuBackgroundOn.jpg");
     Screen::drawTexture(buttonTexture, 491, 383);
     // Call for function
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButton) {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !backgroundPopup) {
       std::cout << "backgrounds" << std::endl;
-
-      chooseButton = false;
+      backgroundPopup = true;
     }
   }
   // Mouse in Mode button
-  if (mouseX >= 490 && mouseX <= 750 && mouseY >= 490 && mouseY <= 560) {
+  else if (mouseX >= 490 && mouseX <= 750 && mouseY >= 490 && mouseY <= 560) {
     // Highlight button
     buttonTexture = loadTexture("resources/menuModeOn.jpg");
     Screen::drawTexture(buttonTexture, 492, 489);
     // Call for function
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButton) {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !modePopup) {
       std::cout << "mode" << std::endl;
-      chooseButton = false;
+      modePopup = true;
     }
   }
 
   // Mouse in Rename button
-  if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 462 && mouseY <= 508) {
+  else if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 462 && mouseY <= 508) {
     // highlight button
     buttonTexture = loadTexture("resources/menuRenameOn.jpg");
     Screen::drawTexture(buttonTexture, 940, 444);
     // Call for function
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButton) {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << "rename" << std::endl;
-      chooseButton = false;
+
       player->setName(namePlayer());
-      chooseButton = true;
-      playButton = true;
     }
   }
 
   // Mouse in Delete button
-  if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 544 && mouseY <= 590) {
+  else if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 544 && mouseY <= 590) {
     // highlight button
     buttonTexture = loadTexture("resources/menuDeleteOn.jpg");
     Screen::drawTexture(buttonTexture, 972, 530);
     // Call for function
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && chooseButton) {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
       std::cout << " you sure to delete?" << std::endl;
       char res;
       std::cin >> res;
-      chooseButton = false;
+
       if (res == 'y') {
         deleteProgess();
       }
-      chooseButton = true;
     }
+
+  } else {
+    if (!(mouseX >= 160 && mouseX <= 750 && mouseY >= 230 && mouseY <= 364))
+      birdPopup = false;
+    if (!(mouseX >= 160 && mouseX <= 750 && mouseY >= 360 && mouseY <= 464))
+      backgroundPopup = false;
+    if (!(mouseX >= 160 && mouseX <= 750 && mouseY >= 460 && mouseY <= 560))
+      modePopup = false;
   }
+  if (birdPopup) chooseBird(mouseX, mouseY);
+  if (backgroundPopup) chooseBackground(mouseX, mouseY);
+  if (modePopup) chooseMode(mouseX, mouseY);
 }
 
 void Menu::createPlayer() {
@@ -215,7 +221,9 @@ std::string Menu::namePlayer() {
       if (event.type == sf::Event::KeyPressed) {
         // 'Enter' mean finish, return the name
         if (event.key.code == sf::Keyboard::Enter) {
-          player->saveProgress(nameInput, player->getHighscore());
+          player->saveProgress(nameInput, player->getHighscore(),
+                               player->getMode(), player->getBirds(),
+                               player->getBackground());
           return nameInput;
         }
         // 'Backspace' to delete previous
@@ -239,7 +247,9 @@ std::string Menu::namePlayer() {
 };
 
 void Menu::play() {
-  player->saveProgress(player->getName(), player->getHighscore());
+  player->saveProgress(player->getName(), player->getHighscore(),
+                       player->getMode(), player->getBirds(),
+                       player->getBackground());
   player->loadProgress();
   std::cout << "display " << player->getHighscore() << std::endl;
   // window->close();
@@ -249,4 +259,87 @@ void Menu::play() {
 void Menu::deleteProgess() {
   player->deleteProgress();
   createPlayer();
+}
+
+void Menu::chooseBird(float mouseX, float mouseY) {
+  sf::Texture popUp = loadTexture("resources/menuBirdsPopup.png");
+  drawTexture(popUp, 0, 0);
+
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+    if (mouseX >= 172 && mouseX <= 234 && mouseY >= 225 && mouseY <= 292) {
+      birdPopup = false;
+      player->setBirds("0");
+      std::cout << player->getBirds() << std::endl;
+      saveProgress();
+    }
+    if (mouseX >= 276 && mouseX <= 346 && mouseY >= 225 && mouseY <= 292) {
+      birdPopup = false;
+      player->setBirds("1");
+      std::cout << player->getBirds() << std::endl;
+      saveProgress();
+    }
+    if (mouseX >= 362 && mouseX <= 446 && mouseY >= 225 && mouseY <= 292) {
+      birdPopup = false;
+      player->setBirds("2");
+      std::cout << player->getBirds() << std::endl;
+      saveProgress();
+    }
+    if (mouseX >= 218 && mouseX <= 280 && mouseY >= 294 && mouseY <= 344) {
+      birdPopup = false;
+      player->setBirds("3");
+      std::cout << player->getBirds() << std::endl;
+      saveProgress();
+    }
+    if (mouseX >= 336 && mouseX <= 428 && mouseY >= 294 && mouseY <= 344) {
+      birdPopup = false;
+      player->setBirds("4");
+      std::cout << player->getBirds() << std::endl;
+      saveProgress();
+    }
+  }
+}
+
+void Menu::chooseBackground(float mouseX, float mouseY) {
+  sf::Texture popUp = loadTexture("resources/menuBackgroundPopup.png");
+  drawTexture(popUp, 0, 0);
+
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+    if (mouseX >= 186 && mouseX <= 306 && mouseY >= 356 && mouseY <= 428) {
+      backgroundPopup = false;
+      player->setBackground("0");
+      std::cout << player->getBackground() << std::endl;
+      saveProgress();
+    }
+    if (mouseX >= 334 && mouseX <= 454 && mouseY >= 356 && mouseY <= 428) {
+      backgroundPopup = false;
+      player->setBackground("1");
+      std::cout << player->getBackground() << std::endl;
+      saveProgress();
+    }
+  }
+}
+
+void Menu::chooseMode(float mouseX, float mouseY) {
+  sf::Texture popUp = loadTexture("resources/menuModePopup.png");
+  drawTexture(popUp, 0, 0);
+
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+    if (mouseX >= 118 && mouseX <= 278 && mouseY >= 478 && mouseY <= 510) {
+      modePopup = false;
+      player->setMode(1);
+      std::cout << player->getMode() << std::endl;
+      saveProgress();
+    }
+    if (mouseX >= 320 && mouseX <= 410 && mouseY >= 478 && mouseY <= 510) {
+      modePopup = false;
+      player->setMode(2);
+      std::cout << player->getMode() << std::endl;
+      saveProgress();
+    }
+  }
+}
+void Menu::saveProgress() {
+  player->saveProgress(player->getName(), player->getHighscore(),
+                       player->getMode(), player->getBirds(),
+                       player->getBackground());
 }

@@ -40,10 +40,10 @@ class Player {
   void setMode(int mode);
 
   // Function to save, load and delete Progress
-  void saveProgress(std::string nameS, int highscoreS);
+  void saveProgress(std::string nameS, int highscoreS, int modeS,
+                    std::string birdS, std::string backS);
   void loadProgress();
   void deleteProgress();
-  // void createBird(std::string choosenBirds);
 };
 
 #endif

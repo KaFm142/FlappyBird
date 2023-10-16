@@ -3,8 +3,8 @@
 // Constructor
 Player::Player() {
   loadProgress();
-  choosenBackground = "";
-  choosenBirds = "";
+  choosenBackground = "0";
+  choosenBirds = "0";
   mode = 1;
 }
 
@@ -39,11 +39,15 @@ int Player::getMode() { return this->mode; }
 void Player::setMode(int mode) { this->mode = mode; }
 
 // Save function
-void Player::saveProgress(std::string nameSave, int highscoreSave) {
+void Player::saveProgress(std::string nameS, int highscoreS, int modeS,
+                          std::string birdS, std::string backS) {
   // Create a temporary json to hold datas
   json playerData;
-  playerData["name"] = nameSave;
-  playerData["highscore"] = highscoreSave;
+  playerData["name"] = nameS;
+  playerData["highscore"] = highscoreS;
+  playerData["mode"] = modeS;
+  playerData["bird"] = birdS;
+  playerData["background"] = backS;
 
   // Open file
   std::ofstream outputFile("save.json");
@@ -68,6 +72,9 @@ void Player::loadProgress() {
     // Set the player name and highscore according to the save
     name = playerData["name"];
     highscore = playerData["highscore"];
+    mode =  playerData["mode"] ;
+    choosenBackground =  playerData["background"] ;
+    choosenBirds =  playerData["bird"] ;
 
     // Close the file
     inputFile.close();
@@ -80,5 +87,5 @@ void Player::loadProgress() {
 // Delete Function
 void Player::deleteProgress() {
   // Delete is saving null and 0 in to the save file
-  saveProgress("", 0);
+  saveProgress("", 0,1,"0", "0");
 }

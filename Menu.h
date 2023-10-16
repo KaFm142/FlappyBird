@@ -4,15 +4,16 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include "Gameplay.h"
 #include "Player.h"
 #include "Screen.h"
-#include "Gameplay.h"
 
 class Menu : public Screen {
  private:
   // Set up these to make sure only 1 click is allowed
-  bool playButton = true;
-  bool chooseButton = true;
+  bool birdPopup = false;
+  bool backgroundPopup = false;
+  bool modePopup = false;
   Player *player;
 
  public:
@@ -27,10 +28,12 @@ class Menu : public Screen {
   void createPlayer();
   void displayPlayer();
   void play();
-  //   void chooseDifficulty();
-  //   void chooseBackground();
-  //   void chooseBird();
-   void deleteProgess();
+
+  void chooseMode(float mouseX, float mouseY);
+  void chooseBackground(float mouseX, float mouseY);
+  void chooseBird(float mouseX, float mouseY);
+  void deleteProgess();
+  void saveProgress();
 };
 
 #endif

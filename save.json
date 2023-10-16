@@ -1,4 +1,7 @@
 {
+    "background": "1",
+    "bird": "2",
     "highscore": 11,
+    "mode": 1,
     "name": "KaFm"
 }
