@@ -1,17 +1,17 @@
-#include "OriginalBird.h"
+#include "Chicken.h"
 
 // Class constructor
-OriginalBird::OriginalBird() {
+Chicken::Chicken() {
   // set up basic information
   health = 3;
-  speed = 4;
+  speed = 3.5;
   xPosition =  100;
   yPosition = 100;
 }
 // Class destructor
 
-OriginalBird::~OriginalBird() {}
+Chicken::~Chicken() {}
 
-void OriginalBird::fall(){
+void Chicken::fall(){
   Unflyable::fall();
 }

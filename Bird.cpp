@@ -18,13 +18,16 @@ int Bird::hitObstance() {
   return health;
 }
 
+// Speed up
+void Bird::speedUp(float accel) { speed += accel; }
+
 // Fly method
 void Bird::fly(){};
 
-// Bird falling
+// Bird fall method
 void Bird::fall() {}
 
-// get and set for the bird position
+// Other get and set function
 void Bird::setPosition(sf::Vector2f position) {
   xPosition = position.x;
   yPosition = position.y;
@@ -41,10 +44,8 @@ int Bird::getHealth() { return health; }
 
 int Bird::getSpeed() { return speed; }
 
-void Bird::speedUp(float accel) { speed += accel; }
+void Bird::setSpeed(float speed) { this->speed = speed; }
 
 float Bird::getFallSpeed() { return fallSpeed; }
 
 void Bird::setFallSpeed(float fallSpeed) { this->fallSpeed = fallSpeed; };
-
-void Bird::setSpeed(float speed) { this->speed = speed; }

@@ -22,20 +22,29 @@ class Bird {
   Bird();
   virtual ~Bird();
 
-  // Other function
+  // Other functions
+
+  // Reduce health if hit Obstance;
   int hitObstance();
-  virtual void fly();
-  virtual void fall();
+  // Speed up by an amout of acceleration
   void speedUp(float accel);
 
-  // set and get function
+  // Vitual function for fly and fall method
+  virtual void fly();
+  virtual void fall();
+
+  // set and get functions
+
   void setPosition(sf::Vector2f position);
   sf::Vector2f getPosition();
+
   int getHealth();
+  
   int getSpeed();
+  void setSpeed(float speed);
+
   float getFallSpeed();
   void setFallSpeed(float fallSpeed);
-  void setSpeed(float speed);
 };
 
 #endif

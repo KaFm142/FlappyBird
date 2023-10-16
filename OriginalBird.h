@@ -1,4 +1,4 @@
-// this clas is the original of the game Flappy Bird
+// this class is the original of the game Flappy Bird
 
 #ifndef ORIGINALBIRD_H
 #define ORIGINALBIRD_H

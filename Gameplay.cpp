@@ -12,17 +12,43 @@ Gameplay::Gameplay() {
   // Load the player selection
   load();
 
-  // Create and allocate Birds using new
-  bird = new OriginalBird();
+  // Set the background
+  if (choosenBackground == "1")
+    backgroundTexture = Screen::loadTexture("resources/screenDark.jpg");
+  else
+    backgroundTexture = Screen::loadTexture("resources/screen.jpg");
 
+  // Create and allocate Birds using new
+  if (choosenBird == "0") {
+    bird = new OriginalBird();
+    birdTexture = Screen::loadTexture("resources/birds/OriginalBird.png");
+    birdSprite.setTexture(birdTexture);
+  } else if (choosenBird == "1") {
+    bird = new Chicken();
+    birdTexture = Screen::loadTexture("resources/birds/Chicken.png");
+    birdSprite.setTexture(birdTexture);
+  } else if (choosenBird == "2") {
+    bird = new Penguin();
+    birdTexture = Screen::loadTexture("resources/birds/Penguin.png");
+    birdSprite.setTexture(birdTexture);
+  } else if (choosenBird == "3") {
+    bird = new Owl();
+    birdTexture = Screen::loadTexture("resources/birds/Owl.png");
+    birdSprite.setTexture(birdTexture);
+  } else {
+    bird = new Falcon();
+    birdTexture = Screen::loadTexture("resources/birds/Falcon.png");
+    birdSprite.setTexture(birdTexture);
+  }
   // Create pipes;
-  pipes = new Pipes *[5];
-  for (int i = 0; i < 5; i++) {
+  pipes = new Pipes *[2];
+  for (int i = 0; i < 2; i++) {
     pipes[i] = new Pipes();
   }
-  pipeTextures = new sf::Texture[5];
-  pipeSprites = new sf::Sprite[5];
-  pipePositions = new sf::Vector2f[5];
+  pipeTextures = new sf::Texture[2];
+  pipeSprites = new sf::Sprite[2];
+  pipePositions = new sf::Vector2f[2];
+
 
   // Set the bird variable based on the game mode
   bird->setSpeed(bird->getSpeed() * mode);
@@ -33,34 +59,34 @@ Gameplay::Gameplay() {
 // Destructor
 Gameplay::~Gameplay() {
   delete bird;
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 2; i++) {
     delete pipes[i];
+
   }
   delete[] pipes;
+
 
   delete[] pipePositions;
   delete[] pipeSprites;
   delete[] pipeTextures;
+
 }
 
 // Display background and come to gaming state
 
 void Gameplay::displayBackground() {
-  // Load textures and set up the sprite
-  if (choosenBackground == "1")
-    backgroundTexture = Screen::loadTexture("resources/screenDark.jpg");
-  else
-    backgroundTexture = Screen::loadTexture("resources/screen.jpg");
   window->setPosition(sf::Vector2i(100, 200));
-  birdTexture = Screen::loadTexture("resources/birds/originalBird.png");
-  birdSprite.setTexture(birdTexture);
+  // Set the initial position for the bird
   birdSprite.setPosition(bird->getPosition());
 
   // Setup a clock for gaming purpose
   sf::Clock clock;
 
-  bool obstancleSpawned = false;
   int usedPipes = 0;
+
+
+  bool pipeSpawned = false;
+ 
   int spawnSec = 0;
   // Gameplay state
 
@@ -83,31 +109,29 @@ void Gameplay::displayBackground() {
     sf::Time inGame = clock.getElapsedTime();
     int second = static_cast<int>(inGame.asSeconds());
 
-    if (second == spawnSec && !obstancleSpawned) {
-      spawnSec += (5 - mode);
+    if (second == spawnSec && !pipeSpawned) {
+      spawnSec = spawnSec + (25 / bird->getSpeed());
       if (!pause) {
         score++;
-        obstancleSpawned = true;
-        usedPipes = spawnObstancle();
+        pipeSpawned = true;
+        usedPipes = spawnPipes();
         if (usedPipes <= -1) {
-          std::cout << "fail to spawn" << std::endl;
+          std::cout << "fail to spawn pipes" << std::endl;
         } else {
           bird->speedUp(accel);
           std::cout << bird->getSpeed() << std::endl;
-          for (int i = 0; i < 5; i++) {
+          for (int i = 0; i < 2; i++) {
             if (i != usedPipes) {
               delete pipes[i];
               pipes[i] = new Pipes();
             }
           }
-          // std::cout << "using: " << usedPipes << std::endl;
-          // std::cout << "gapStart: " << pipes[usedPipes]->getGapY() <<
-          // std::endl;
         };
       }
     } else {
-      obstancleSpawned = false;
+      pipeSpawned = false;
     }
+
 
     // Set inAnimation back to false mean an action has been finished
     if (frame >= 40) {
@@ -117,7 +141,7 @@ void Gameplay::displayBackground() {
     // The game, variable will be update if the game is not pause
     if (!pause) {
       // Update pipes position
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 2; i++) {
         if (pipes[i]->getGapY() != 0 && pipes[i] != nullptr) {
           pipePositions[i] = pipeSprites[i].getPosition();
           pipePositions[i].x -= bird->getSpeed();
@@ -125,8 +149,6 @@ void Gameplay::displayBackground() {
           pipes[i]->setPosition(pipePositions[i]);
         }
       }
-
-      // Adding acceleration
 
       // Get the position
       birdPosition = birdSprite.getPosition();
@@ -257,14 +279,14 @@ void Gameplay::displayScore() {
   window->draw(scoreText);
 }
 
-int Gameplay::spawnObstancle() {
+int Gameplay::spawnPipes() {
   std::random_device rand;
   std::mt19937 seed(rand());
 
   std::uniform_int_distribution<int> dist(30, 400);
   int obstancle_Y = dist(seed);
 
-  for (int i; i < 5; i++) {
+  for (int i; i < 2; i++) {
     if (pipes[i]->getGapY() == 0) {
       pipeTextures[i] = Screen::loadTexture("resources/pipes.png");
       pipeSprites[i].setTexture(pipeTextures[i]);
@@ -280,7 +302,11 @@ int Gameplay::spawnObstancle() {
   return -1;
 }
 
-void Gameplay::displayObstancle(int used) { window->draw(pipeSprites[used]); };
+
+
+void Gameplay::displayObstancle(int usedPipe) {
+  window->draw(pipeSprites[usedPipe]);
+};
 
 void Gameplay::checkColapse(int used) {
   int birdEnd = birdPosition.x + 80;

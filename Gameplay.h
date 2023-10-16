@@ -3,8 +3,13 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 
+#include "Chicken.h"
+#include "Falcon.h"
+
 #include "Menu.h"
 #include "OriginalBird.h"
+#include "Owl.h"
+#include "Penguin.h"
 #include "Pipes.h"
 #include "Player.h"
 #include "Screen.h"
@@ -16,7 +21,6 @@ class Gameplay : public Screen {
   std::string choosenBird;
   std::string choosenBackground;
 
-
   // Score
   int score;
   // Texture, sprite and position of Bird
@@ -24,12 +28,15 @@ class Gameplay : public Screen {
   sf::Sprite birdSprite;
   sf::Vector2f birdPosition;
   // List of available character
-  OriginalBird* bird;
-
+  Bird* bird = nullptr;
   // Texture, sprite and position of Obstancles
-  sf::Texture* pipeTextures;    
-  sf::Sprite* pipeSprites;      
-  sf::Vector2f* pipePositions;  
+  // Pipes
+  sf::Texture* pipeTextures;
+  sf::Sprite* pipeSprites;
+  sf::Vector2f* pipePositions;
+
+  // Flying Bird
+ 
   // List of Obstancles
   Pipes** pipes;
 
@@ -59,11 +66,11 @@ class Gameplay : public Screen {
   void displayTime(int second);
   void displayScore();
 
-  int spawnObstancle();
-  void displayObstancle(int used);
+  int spawnPipes();
+  
+  void displayObstancle(int used );
 
   void checkColapse(int used);
-
 
   void load();
 };
