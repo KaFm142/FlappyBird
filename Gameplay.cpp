@@ -83,15 +83,16 @@ void Gameplay::displayBackground() {
           std::cout << "fail to spawn" << std::endl;
         } else {
           bird->speedUp(accel);
-          std::cout<<bird->getSpeed()<<std::endl;
+          std::cout << bird->getSpeed() << std::endl;
           for (int i = 0; i < 5; i++) {
             if (i != usedPipes) {
               delete pipes[i];
               pipes[i] = new Pipes();
             }
           }
-          //std::cout << "using: " << usedPipes << std::endl;
-          //std::cout << "gapStart: " << pipes[usedPipes]->getGapY() << std::endl;
+          // std::cout << "using: " << usedPipes << std::endl;
+          // std::cout << "gapStart: " << pipes[usedPipes]->getGapY() <<
+          // std::endl;
         };
       }
     } else {
@@ -116,14 +117,15 @@ void Gameplay::displayBackground() {
       }
 
       // Adding acceleration
-      
-      
+
       // Get the position
       birdPosition = birdSprite.getPosition();
       bird->setPosition(birdPosition);
 
       // Check for condition of losing
-      checkColapse(usedPipes);
+      if (birdPosition.x + 80 >= pipePositions[usedPipes].x ||
+          birdPosition.y >= 560)
+        checkColapse(usedPipes);
 
       // Check if an action is currently happen
       if (inAnimation) {
@@ -248,7 +250,7 @@ int Gameplay::spawnObstancle() {
   std::random_device rand;
   std::mt19937 seed(rand());
 
-  std::uniform_int_distribution<int> dist(30, 450);
+  std::uniform_int_distribution<int> dist(30, 400);
   int obstancle_Y = dist(seed);
 
   for (int i; i < 5; i++) {

@@ -15,22 +15,25 @@ void Menu::displayBackground() {
   // A loop while the window is open
   while (window->isOpen()) {
     sf::Event event;
-    while (window->pollEvent(event)) {
-      // Close the window when hit 'Esc'
-      if (event.type == sf::Event::Closed ||
-          event.key.code == sf::Keyboard::Escape) {
-        window->close();
-        system("clear");
+
+    if (window->hasFocus()) {
+      while (window->pollEvent(event)) {
+        // Close the window when hit 'Esc'
+        if (event.type == sf::Event::Closed ||
+            event.key.code == sf::Keyboard::Escape) {
+          window->close();
+          system("clear");
+        }
       }
+      // Clear and update the window for each frame
+      window->clear();
+      Screen::drawTexture(backgroundTexture, 0, 0);
+      // Action that take place
+      action();
+      // Display name and point
+      displayPlayer();
+      window->display();
     }
-    // Clear and update the window for each frame
-    window->clear();
-    Screen::drawTexture(backgroundTexture, 0, 0);
-    // Action that take place
-    action();
-    // Display name and point
-    displayPlayer();
-    window->display();
   }
 }
 
