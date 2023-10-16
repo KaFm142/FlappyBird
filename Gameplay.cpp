@@ -9,6 +9,9 @@ Gameplay::Gameplay() {
   pause = false;
   inAnimation = false;
 
+  // Load the player selection
+  load();
+
   // Create and allocate Birds using new
   bird = new OriginalBird();
 
@@ -20,6 +23,9 @@ Gameplay::Gameplay() {
   pipeTextures = new sf::Texture[5];
   pipeSprites = new sf::Sprite[5];
   pipePositions = new sf::Vector2f[5];
+
+  // Set the bird variable based on the game mode
+  bird->setSpeed(bird->getSpeed() * mode);
   // Display background and come to gaming state
   displayBackground();
 }
@@ -41,7 +47,11 @@ Gameplay::~Gameplay() {
 
 void Gameplay::displayBackground() {
   // Load textures and set up the sprite
-  backgroundTexture = Screen::loadTexture("resources/screen.jpg");
+  if (choosenBackground == "1")
+    backgroundTexture = Screen::loadTexture("resources/screenDark.jpg");
+  else
+    backgroundTexture = Screen::loadTexture("resources/screen.jpg");
+  window->setPosition(sf::Vector2i(100, 200));
   birdTexture = Screen::loadTexture("resources/birds/originalBird.png");
   birdSprite.setTexture(birdTexture);
   birdSprite.setPosition(bird->getPosition());
@@ -54,7 +64,7 @@ void Gameplay::displayBackground() {
   int spawnSec = 0;
   // Gameplay state
 
-  float accel = 0.3;
+  float accel = 0.2 + (static_cast<float>(mode) / 10.0);
 
   while (window->isOpen()) {
     sf::Event event;
@@ -74,7 +84,7 @@ void Gameplay::displayBackground() {
     int second = static_cast<int>(inGame.asSeconds());
 
     if (second == spawnSec && !obstancleSpawned) {
-      spawnSec += 5;
+      spawnSec += (5 - mode);
       if (!pause) {
         score++;
         obstancleSpawned = true;
@@ -163,6 +173,7 @@ void Gameplay::action(sf::Event event) {
   if (event.key.code == sf::Keyboard::Space) {
     // Set to know that an action is take place
     inAnimation = true;
+    bird->setFallSpeed(1);
     frame = 0;
   };
 
@@ -304,5 +315,25 @@ void Gameplay::checkColapse(int used) {
       birdPosition.y -= 100;
       bird->setPosition(birdPosition);
     }
+  }
+}
+
+void Gameplay::load() {
+  // Open save file
+  std::ifstream inputFile("save.json");
+  if (inputFile.is_open()) {
+    json playerData;
+    // Get tha data and hold it to a temporary json
+    inputFile >> playerData;
+    // Load to the variable;
+    mode = playerData["mode"];
+    choosenBackground = playerData["background"];
+    choosenBird = playerData["bird"];
+
+    // Close the file
+    inputFile.close();
+  } else {
+    // Error handling
+    std::cerr << "error in loading" << std::endl;
   }
 }

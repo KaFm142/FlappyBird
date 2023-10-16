@@ -12,6 +12,8 @@ Menu::~Menu() { delete player; };
 void Menu::displayBackground() {
   // Load the background texture
   backgroundTexture = Screen::loadTexture("resources/menu.jpg");
+  window->setPosition(sf::Vector2i(100, 200));
+
   // A loop while the window is open
   while (window->isOpen()) {
     sf::Event event;

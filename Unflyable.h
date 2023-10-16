@@ -13,6 +13,7 @@ class Unflyable: public Bird{
     
     // Different flying method
     void fly();
+    virtual void fall();
 };
 
 

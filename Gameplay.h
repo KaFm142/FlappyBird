@@ -11,7 +11,13 @@
 
 class Gameplay : public Screen {
  private:
-  // Time and Score
+  // Player choosen feature
+  int mode;
+  std::string choosenBird;
+  std::string choosenBackground;
+
+
+  // Score
   int score;
   // Texture, sprite and position of Bird
   sf::Texture birdTexture;
@@ -57,6 +63,9 @@ class Gameplay : public Screen {
   void displayObstancle(int used);
 
   void checkColapse(int used);
+
+
+  void load();
 };
 
 #endif

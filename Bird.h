@@ -13,8 +13,7 @@ class Bird {
   // Variable of the bird
   int health;
   float speed;
-  float height;
-  float width;
+  float fallSpeed;
   float xPosition;
   float yPosition;
 
@@ -33,8 +32,10 @@ class Bird {
   void setPosition(sf::Vector2f position);
   sf::Vector2f getPosition();
   int getHealth();
-
   int getSpeed();
+  float getFallSpeed();
+  void setFallSpeed(float fallSpeed);
+  void setSpeed(float speed);
 };
 
 #endif

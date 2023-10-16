@@ -4,10 +4,9 @@
 Bird::Bird() {
   health = 0;
   speed = 0.0;
-  height = 0.0;
-  width = 0.0;
   xPosition = 0.0;
   yPosition = 0.0;
+  fallSpeed = 1;
 }
 
 // Class destructor
@@ -23,7 +22,7 @@ int Bird::hitObstance() {
 void Bird::fly(){};
 
 // Bird falling
-void Bird::fall() { yPosition += speed; }
+void Bird::fall() {}
 
 // get and set for the bird position
 void Bird::setPosition(sf::Vector2f position) {
@@ -42,4 +41,10 @@ int Bird::getHealth() { return health; }
 
 int Bird::getSpeed() { return speed; }
 
-void Bird::speedUp(float accel) { speed +=accel; }
+void Bird::speedUp(float accel) { speed += accel; }
+
+float Bird::getFallSpeed() { return fallSpeed; }
+
+void Bird::setFallSpeed(float fallSpeed) { this->fallSpeed = fallSpeed; };
+
+void Bird::setSpeed(float speed) { this->speed = speed; }

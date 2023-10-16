@@ -3,7 +3,7 @@
 // Class constructor
 OriginalBird::OriginalBird() {
   // set up basic information
-  health = 3;
+  health = 1;
   speed = 4;
   xPosition =  100;
   yPosition = 100;
@@ -11,3 +11,7 @@ OriginalBird::OriginalBird() {
 // Class destructor
 
 OriginalBird::~OriginalBird() {}
+
+void OriginalBird::fall(){
+  Unflyable::fall();
+}
