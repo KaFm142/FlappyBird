@@ -10,7 +10,7 @@ SOURCES = Menu.cpp testMenu.cpp Screen.cpp \
 Player.cpp Gameplay.cpp Bird.cpp Unflyable.cpp\
 OriginalBird.cpp Pipes.cpp Obstancles.cpp\
 Chicken.cpp Penguin.cpp Flyable.cpp\
-Falcon.cpp Owl.cpp FlyingBird.cpp
+Falcon.cpp Owl.cpp
 
 # List of object files
 OBJECTS = $(SOURCES:.cpp=.o)

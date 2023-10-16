@@ -14,6 +14,8 @@ class Menu : public Screen {
   bool birdPopup = false;
   bool backgroundPopup = false;
   bool modePopup = false;
+
+  // Include a pointer to player class
   Player *player;
 
  public:
@@ -23,17 +25,25 @@ class Menu : public Screen {
   // Display background and action function
   void displayBackground();
   void action();
+
   // Create Player for new player
-  std::string namePlayer();
   void createPlayer();
+  std::string namePlayer();
+
+  // Display player stat
   void displayPlayer();
+
+  // Play function
   void play();
 
-  void chooseMode(float mouseX, float mouseY);
-  void chooseBackground(float mouseX, float mouseY);
+  // Choose function
   void chooseBird(float mouseX, float mouseY);
-  void deleteProgess();
+  void chooseBackground(float mouseX, float mouseY);
+  void chooseMode(float mouseX, float mouseY);
+
+  // Save and delete function
   void saveProgress();
+  void deleteProgess();
 };
 
 #endif

@@ -5,11 +5,14 @@
 
 #include "Unflyable.h"
 
+// Inheritage of Unflyable
 class Chicken : public Unflyable {
  public:
   // class constructor and destructor
   Chicken();
   ~Chicken();
+
+  // Falling method
   void fall();
 };
 

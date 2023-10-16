@@ -10,6 +10,8 @@ class OriginalBird : public Unflyable {
   // class constructor and destructor
   OriginalBird();
   ~OriginalBird();
+
+  // Fall method
   void fall();
 };
 

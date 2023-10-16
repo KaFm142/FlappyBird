@@ -4,22 +4,26 @@
 Unflyable::Unflyable() {
   health = 1;
   speed = 1;
- xPosition = 100;
+  xPosition = 100;
   yPosition = 100;
 };
+
 // Destructor
 Unflyable::~Unflyable(){};
 
-// Bird falling
+// Bird flying method
 void Unflyable::fly() {
-  if (yPosition > 0) yPosition -= 3;
-  else{
+  if (yPosition > 0)
+    yPosition -= 3;
+  else {
+    // COntrol the bird in screen
     sf::Vector2f position = getPosition();
     position.y = 0;
     setPosition(position);
   }
 };
 
+// The falling speed is faster each frame
 void Unflyable::fall() {
   yPosition += fallSpeed;
   fallSpeed += 0.2;

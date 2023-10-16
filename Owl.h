@@ -7,9 +7,11 @@
 
 class Owl : public Flyable {
  public:
+  
   // class constructor and destructor
   Owl();
   ~Owl();
+  // Faliing method
   void fall();
 };
 

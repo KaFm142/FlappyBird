@@ -5,13 +5,12 @@ OriginalBird::OriginalBird() {
   // set up basic information
   health = 3;
   speed = 4;
-  xPosition =  100;
+  xPosition = 100;
   yPosition = 100;
 }
-// Class destructor
 
+// Class destructor
 OriginalBird::~OriginalBird() {}
 
-void OriginalBird::fall(){
-  Unflyable::fall();
-}
+// Take the falling method of unflyable
+void OriginalBird::fall() { Unflyable::fall(); }

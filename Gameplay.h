@@ -5,7 +5,6 @@
 
 #include "Chicken.h"
 #include "Falcon.h"
-
 #include "Menu.h"
 #include "OriginalBird.h"
 #include "Owl.h"
@@ -36,7 +35,7 @@ class Gameplay : public Screen {
   sf::Vector2f* pipePositions;
 
   // Flying Bird
- 
+
   // List of Obstancles
   Pipes** pipes;
 
@@ -56,22 +55,27 @@ class Gameplay : public Screen {
   // Handle user input
   void action(sf::Event event);
 
+  // Display time and point
+  void displayTime(int second);
+  void displayScore();
+  void displayHealth();
+
   // Handle the game over
   void endgame();
+
+  // Create pipes
+  int spawnPipes();
+
+  // Display obstancles
+  void displayObstancle(int used);
+
+  // Check for collapsing between obstancles and birds
+  void checkColapse(int used);
 
   // Save the progress
   void save();
 
-  // Display time and point
-  void displayTime(int second);
-  void displayScore();
-
-  int spawnPipes();
-  
-  void displayObstancle(int used );
-
-  void checkColapse(int used);
-
+  // Loading from save file
   void load();
 };
 

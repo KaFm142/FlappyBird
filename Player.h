@@ -13,6 +13,7 @@ using json = nlohmann::json;
 
 class Player {
  private:
+ // Basic information
   std::string name;
   int highscore;
   // Choosen feature
@@ -23,6 +24,7 @@ class Player {
  public:
   // Constructor
   Player();
+  ~Player();
   // Get and set function
   int getHighscore();
   void setHighscore(int score);

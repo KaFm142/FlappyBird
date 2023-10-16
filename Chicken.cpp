@@ -12,6 +12,7 @@ Chicken::Chicken() {
 
 Chicken::~Chicken() {}
 
+// Falling method
 void Chicken::fall(){
   Unflyable::fall();
 }

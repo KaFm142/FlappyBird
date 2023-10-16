@@ -8,6 +8,9 @@ Player::Player() {
   mode = 1;
 }
 
+// Dextructor
+Player::~Player(){};
+
 // Initialize the set and get functions
 int Player::getHighscore() {
   // load player befor get the highscore
@@ -69,12 +72,12 @@ void Player::loadProgress() {
     json playerData;
     // Get tha data and hold it to a temporary json
     inputFile >> playerData;
-    // Set the player name and highscore according to the save
+    // Set the player stat according to the save
     name = playerData["name"];
     highscore = playerData["highscore"];
-    mode =  playerData["mode"] ;
-    choosenBackground =  playerData["background"] ;
-    choosenBirds =  playerData["bird"] ;
+    mode = playerData["mode"];
+    choosenBackground = playerData["background"];
+    choosenBirds = playerData["bird"];
 
     // Close the file
     inputFile.close();
@@ -87,5 +90,5 @@ void Player::loadProgress() {
 // Delete Function
 void Player::deleteProgress() {
   // Delete is saving null and 0 in to the save file
-  saveProgress("", 0,1,"0", "0");
+  saveProgress("", 0, 1, "0", "0");
 }

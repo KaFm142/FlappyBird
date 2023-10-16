@@ -10,6 +10,7 @@ class Penguin : public Unflyable {
   // class constructor and destructor
   Penguin();
   ~Penguin();
+  // Falling method
   void fall();
 };
 
