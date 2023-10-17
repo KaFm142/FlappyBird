@@ -397,3 +397,12 @@ void Gameplay::load() {
     std::cerr << "error in loading" << std::endl;
   }
 }
+
+// Set and get function
+void Gameplay::setScore(int score) { this->score = score; }
+
+int Gameplay::getMode() { return mode; };
+
+std::string Gameplay::getBirds() { return choosenBird; };
+
+std::string Gameplay::getBacks() { return choosenBackground; };

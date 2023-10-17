@@ -77,6 +77,12 @@ class Gameplay : public Screen {
 
   // Loading from save file
   void load();
+
+  // Get and set function
+  void setScore(int score);
+  int getMode();
+  std::string getBirds();
+  std::string getBacks();
 };
 
 #endif
