@@ -12,8 +12,6 @@ Menu::~Menu() { delete player; };
 
 // Display backgriud and main logic
 void Menu::displayBackground() {
-  // Load the background texture
-  backgroundTexture = Screen::loadTexture("resources/menu.jpg");
   window->setPosition(sf::Vector2i(100, 200));
 
   // A loop while the window is open
@@ -22,6 +20,7 @@ void Menu::displayBackground() {
     sf::Event event;
 
     if (window->hasFocus()) {
+      backgroundTexture = Screen::loadTexture("resources/menu.jpg");
       while (window->pollEvent(event)) {
         // Close the window when hit 'Esc'
         if (event.type == sf::Event::Closed ||
@@ -159,7 +158,7 @@ void Menu::action() {
 // Create player function
 void Menu::createPlayer() {
   // Allocate new memory address for player
-  //player = new Player();
+  player = new Player();
 
   // Set the name for player if it an empty string
   if (player->getName() == "") {
@@ -284,7 +283,6 @@ void Menu::play() {
                        player->getBackground());
   // Load progress
   player->loadProgress();
-  // std::cout << "display " << player->getHighscore() << std::endl;
 
   // Create a Gameplay class to start the game
   Gameplay Gameplay;
@@ -384,3 +382,4 @@ void Menu::deleteProgess() {
 
 // Define get and set function
 Player* Menu::getplayer() { return player; }
+

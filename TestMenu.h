@@ -17,8 +17,9 @@ class TestMenu {
   void testSaveProgress();
   void testDeleteProgress();
 
+  // UI testing
+  void TestDisplay();
 
-  void TestDisplay();  
   // Run all test
   void runTest();
 };
