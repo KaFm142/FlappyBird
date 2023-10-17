@@ -1,0 +1,76 @@
+Start 	5.10.2023:
+
+	- Created 'Gameplay', 'Menu', 'Screen' class with it make file and a makefile that work.
+
+	- As I work with SFML, these class has more variable. For example: sf::RenderWindow, sf::VideoMode, Texture and Sprite.
+
+
+	9.10.2023
+
+	- Created 'Player' Class and success pass through test run, link this class with 'Menu'.
+
+	- Add set and get function in 'Player' for all of it variable.	
+
+	- Added a variable call 'mode' in 'Player' to present for the choosen Mode.
+
+	- Added new function named 'loadTexture' and 'drawTexture' in 'Menu' to set and draw image from 'resources/'.
+
+	- In 'Menu' added new variable to control game state, naming 'playButton' and 'chooseButton'.
+
+
+	
+	14.10.2023
+
+	- Created a general 'Bird' class.
+
+	- In 'Gameplay', added new SFML variable called 'birdTexture' and 'birdSprite'
+
+	- Moved 'loadTexture' and 'drawTexture' from 'Menu' back to 'Screen' class.
+
+	- In 'Menu', added new function called 'createPlayer' and 'displayPlayer' to create a new player with new name and display its stat (name and score).
+
+	- removed the relationship between 'PLayer' and 'Bird', 'Bird' now will be an aggregation of 'Gameplay'
+
+	- In 'Player', removed 'createBird' function.
+	
+	15.10.2023
+
+	- Changed to used Json for saving method, download 'json.hpp' from 'nlohman' on github to control saving and loading
+(https://github.com/nlohmann/json/tree/develop/include/nlohmann).
+
+	- Removed the 'action' function in 'bird', instead, created new function called 'fly' and 'fall', and a set and get for the 'bird' position.
+
+	- In 'Gameplay', created new variable called 'pause', 'frame' and 'inAnimation' to control the game state.
+
+
+	- In 'Player', added function call 'save' and 'load'.
+
+	- Removed the 'flying obstances' class due to the problem of handling error and memory allocation.
+
+	- In gameplay, create new function call 'save' to save the highscore after 'endgame()'.
+
+	- In 'Obstancles', add set and get function for 'position'.
+	
+	- In 'Pipes', removed variable called 'gapHeight'.
+
+	- In 'Unflyable', add 'fly' function.
+
+
+	16.10.2023
+
+	- In 'Gameplay' added texture, sprite, position variable for 'Bird' and 'Pipes'.
+
+	- In 'Gameplay', delete the 'deleteObstancles' function, added 'displayObstancles' and 'checkCollapse' function.
+
+	- In 'Gameplay', added 'choosenBird' and 'choosenBackground' to control player choice. Added 'load' function to load player choice.
+
+	- In 'Menu', added 'birdPopup', 'backgroundPopup', 'modePopup' to control button pressed. Removed 'playButton' and 'chooseButton'
+	
+
+	17.10.2023
+
+	- In 'Bird', removed variable called 'Name', 'Height', 'Width'. Changed 'HeightPosition' and 'WidthPosition' into 'xPosition' and 'yPosition'. Added 'fallSpeed'.
+
+
+
+
