@@ -159,7 +159,7 @@ void Menu::action() {
 // Create player function
 void Menu::createPlayer() {
   // Allocate new memory address for player
-  player = new Player();
+  //player = new Player();
 
   // Set the name for player if it an empty string
   if (player->getName() == "") {
@@ -171,7 +171,8 @@ void Menu::createPlayer() {
 void Menu::displayPlayer() {
   // Set up font and color
   sf::Font font;
-  font.loadFromFile("resources/arial.ttf");
+  if (!font.loadFromFile("resources/arial.ttf"))
+    std::cerr << "Error loading font " << std::endl;
   sf::Color color(243, 219, 68);
 
   // Set up text and display
@@ -204,7 +205,8 @@ void Menu::displayPlayer() {
 std::string Menu::namePlayer() {
   // Set up font and color
   sf::Font font;
-  font.loadFromFile("resources/arial.ttf");
+  if (!font.loadFromFile("resources/arial.ttf"))
+    std::cerr << "Error loading font " << std::endl;
   sf::Color color(169, 176, 168);
 
   // Set the background and title
@@ -376,7 +378,9 @@ void Menu::saveProgress() {
 // Delete progress
 void Menu::deleteProgess() {
   player->deleteProgress();
-
   // Create new player after delete
   createPlayer();
 }
+
+// Define get and set function
+Player* Menu::getplayer() { return player; }

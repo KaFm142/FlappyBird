@@ -3,8 +3,6 @@ CFLAGS = -Wall -Wextra -pedantic -std=c++11 -g
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 VALGRIND = valgrind
 
-# Flag to compile using valgrind
-VALGRIND_FLAGS = --leak-check=full --show-reachable=yes
 # List of source files
 SOURCES = Menu.cpp testMenu.cpp Screen.cpp \
 Player.cpp Gameplay.cpp Bird.cpp Unflyable.cpp\
@@ -16,7 +14,7 @@ Falcon.cpp Owl.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 # The target executable
-TARGET = flappyBird.exe  # Note the .exe extension
+TARGET = flappyBird  
 
 all: $(TARGET)
 

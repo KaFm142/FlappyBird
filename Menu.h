@@ -44,6 +44,10 @@ class Menu : public Screen {
   // Save and delete function
   void saveProgress();
   void deleteProgess();
+
+  // Get and set function for testing purpose
+  Player* getplayer();
+  
 };
 
 #endif

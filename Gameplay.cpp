@@ -126,7 +126,7 @@ void Gameplay::displayBackground() {
 
         // Error display
         if (usedPipes <= -1) {
-          std::cout << "fail to spawn pipes" << std::endl;
+          std::cerr << "fail to spawn pipes" << std::endl;
         } else {
           // Speed up bird for every pipes spawn
           bird->speedUp(accel);
@@ -221,8 +221,8 @@ void Gameplay::action(sf::Event event) {
 void Gameplay::displayTime(int second) {
   // Set up font
   sf::Font font;
-  font.loadFromFile("resources/arial.ttf");
-
+  if (!font.loadFromFile("resources/arial.ttf"))
+    std::cerr << "Error loading font " << std::endl;
   // Set up text and display
   sf::Text timeText;
   // Set string
@@ -238,8 +238,8 @@ void Gameplay::displayTime(int second) {
 // Display score function
 void Gameplay::displayScore() {
   sf::Font font;
-  font.loadFromFile("resources/arial.ttf");
-
+  if (!font.loadFromFile("resources/arial.ttf"))
+    std::cerr << "Error loading font " << std::endl;
   sf::Text scoreText;
   scoreText.setString("Point: " + std::to_string(score));
   scoreText.setFont(font);
@@ -253,8 +253,8 @@ void Gameplay::displayScore() {
 // Display health function
 void Gameplay::displayHealth() {
   sf::Font font;
-  font.loadFromFile("resources/arial.ttf");
-
+  if (!font.loadFromFile("resources/arial.ttf"))
+    std::cerr << "Error loading font " << std::endl;
   sf::Text healthText;
   healthText.setString("Health: " + std::to_string(bird->getHealth()));
   healthText.setFont(font);
