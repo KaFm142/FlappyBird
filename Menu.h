@@ -14,6 +14,7 @@ class Menu : public Screen {
   bool birdPopup = false;
   bool backgroundPopup = false;
   bool modePopup = false;
+  bool guidePopup = false;
 
   // Include a pointer to player class
   Player *player;
@@ -40,6 +41,7 @@ class Menu : public Screen {
   void chooseBird(float mouseX, float mouseY);
   void chooseBackground(float mouseX, float mouseY);
   void chooseMode(float mouseX, float mouseY);
+  void chooseGuide();
 
   // Save and delete function
   void saveProgress();

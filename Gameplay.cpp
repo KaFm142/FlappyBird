@@ -322,7 +322,7 @@ void Gameplay::checkColapse(int used) {
         endgame();
       } else {
         // Else the bird will perform a "jump"
-        birdPosition.x += 60;
+        birdPosition.x += 100;
         birdPosition.y -= 60;
         bird->setPosition(birdPosition);
       }

@@ -72,5 +72,8 @@ Start 	5.10.2023:
 	- In 'Bird', removed variable called 'Name', 'Height', 'Width'. Changed 'HeightPosition' and 'WidthPosition' into 'xPosition' and 'yPosition'. Added 'fallSpeed'.
 
 
+	18.10.2023
+
+	- In 'Menu', created 'Guide' and its following function to give player a brief about the game
 
 

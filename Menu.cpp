@@ -58,7 +58,8 @@ void Menu::action() {
 
   // Check for the mouse and click
   // Mouse in play button
-  if (mouseX >= 490 && mouseX <= 750 && mouseY >= 190 && mouseY <= 260) {
+  if (mouseX >= 490 && mouseX <= 750 && mouseY >= 190 && mouseY <= 260 &&
+      !guidePopup) {
     // Highlight button
     buttonTexture = loadTexture("resources/menuPlayOn.jpg");
     drawTexture(buttonTexture, 490, 190);
@@ -71,7 +72,8 @@ void Menu::action() {
   }
 
   // Mouse in Birds button
-  if (mouseX >= 490 && mouseX <= 750 && mouseY >= 290 && mouseY <= 350) {
+  if (mouseX >= 490 && mouseX <= 750 && mouseY >= 290 && mouseY <= 350 &&
+      !guidePopup) {
     // Highlight button
     buttonTexture = loadTexture("resources/menuBirdsOn.jpg");
     Screen::drawTexture(buttonTexture, 493, 285);
@@ -86,7 +88,8 @@ void Menu::action() {
   }
 
   // Mouse in Background button
-  else if (mouseX >= 490 && mouseX <= 750 && mouseY >= 385 && mouseY <= 450) {
+  else if (mouseX >= 490 && mouseX <= 750 && mouseY >= 385 && mouseY <= 450 &&
+           !guidePopup) {
     // Highlight button
     buttonTexture = loadTexture("resources/menuBackgroundOn.jpg");
     Screen::drawTexture(buttonTexture, 491, 383);
@@ -109,8 +112,21 @@ void Menu::action() {
     }
   }
 
+  // Mouse in Guide position
+  else if (mouseX >= 1092 && mouseX <= 1196 && mouseY >= 8 && mouseY <= 60) {
+    // Highlight button
+    buttonTexture = loadTexture("resources/menuGuideOn.png");
+    Screen::drawTexture(buttonTexture, 0, 0);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !guidePopup) {
+      // Set this to true to the program know which button is pressed
+      guidePopup = true;
+    }
+  }
+
   // Mouse in Rename button
-  else if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 462 && mouseY <= 508) {
+  else if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 462 && mouseY <= 508 &&
+           !guidePopup) {
     // highlight button
     buttonTexture = loadTexture("resources/menuRenameOn.jpg");
     Screen::drawTexture(buttonTexture, 940, 444);
@@ -121,7 +137,8 @@ void Menu::action() {
   }
 
   // Mouse in Delete button
-  else if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 544 && mouseY <= 590) {
+  else if (mouseX >= 1018 && mouseX <= 1192 && mouseY >= 544 && mouseY <= 590 &&
+           !guidePopup) {
     // highlight button
     buttonTexture = loadTexture("resources/menuDeleteOn.jpg");
     Screen::drawTexture(buttonTexture, 972, 530);
@@ -153,6 +170,7 @@ void Menu::action() {
   if (birdPopup) chooseBird(mouseX, mouseY);
   if (backgroundPopup) chooseBackground(mouseX, mouseY);
   if (modePopup) chooseMode(mouseX, mouseY);
+  if (guidePopup) chooseGuide();
 }
 
 // Create player function
@@ -366,6 +384,20 @@ void Menu::chooseMode(float mouseX, float mouseY) {
   saveProgress();
 }
 
+// Choose guide function
+void Menu::chooseGuide() {
+  // Load the popup
+  sf::Texture popUp = loadTexture("resources/menuGuidePopup.png");
+  drawTexture(popUp, 0, 0);
+
+  // Display the guide and wait for 3 second
+  window->display();
+  std::this_thread::sleep_for(std::chrono::seconds(3));
+
+  // Set the popup to false
+  guidePopup = false;
+}
+
 // Saving function
 void Menu::saveProgress() {
   player->saveProgress(player->getName(), player->getHighscore(),
@@ -382,4 +414,3 @@ void Menu::deleteProgess() {
 
 // Define get and set function
 Player* Menu::getplayer() { return player; }
-
